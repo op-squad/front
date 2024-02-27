@@ -1,6 +1,6 @@
 export default function Login() {
   return (
-    <div className="flex ">
+    <div className="flex font-inter">
       <div className="bg-gray-300 h-screen w-7/12"></div>
       <div className="bg-gray-50 flex flex-grow ">
         <div className="w-7/12  m-auto my-16">
