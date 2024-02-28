@@ -10,7 +10,7 @@ export default function Login() {
           alt="Broken Picture SVG"
         />
       </div>
-      <div className="bg-gray-50 flex flex-grow ">
+      <div className="bg-gray-100 flex flex-grow ">
         <div className="w-7/12  m-auto my-16">
           <div className="bg-gray-300 w-fit m-auto  py-2 px-8 mb-24">Logo</div>
           <div className="mb-8">
