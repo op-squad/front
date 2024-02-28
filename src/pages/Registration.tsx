@@ -1,7 +1,15 @@
+import brokenPicture from "../assets/broken.svg";
+
 export default function Register() {
   return (
     <div className="flex font-inter">
-      <div className="bg-gray-300 h-screen w-7/12"></div>
+      <div className="flex justify-center items-center bg-gray-300 h-screen w-7/12">
+        <img
+          src={brokenPicture}
+          className="w-4/12"
+          alt="Broken Picture SVG"
+        />
+      </div>
       <div className="bg-gray-50 flex flex-grow ">
         <div className="w-7/12  m-auto my-16">
           <div className="bg-gray-300 w-fit m-auto  py-2 px-8 mb-16">Logo</div>
