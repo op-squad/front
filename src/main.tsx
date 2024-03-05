@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
 import Login from "./pages/Login.tsx";
+import NotFound from "./pages/NotFound.tsx";
 import PasswordReset from "./pages/PasswordReset.tsx";
 import Register from "./pages/Registration.tsx";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/password-reset",
     element: <PasswordReset />,
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
 

@@ -11,7 +11,7 @@ export default function PasswordReset() {
           Logo
         </div>
         <div>
-          <PasswordResetMessage sent={true} />
+          <PasswordResetMessage sent={false} />
         </div>
       </div>
       <div className="flex-1 justify-center items-center h-screen"></div>
