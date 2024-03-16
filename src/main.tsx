@@ -1,35 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import App from "./App.tsx";
+import { RouterProvider } from "react-router-dom";
+import router from "./Router";
 import "./index.css";
-import Login from "./pages/Login.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import PasswordReset from "./pages/PasswordReset.tsx";
-import Register from "./pages/Registration.tsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/password-reset",
-    element: <PasswordReset />,
-  },
-  {
-    path: "*",
-    element: <NotFound />,
-  },
-]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
