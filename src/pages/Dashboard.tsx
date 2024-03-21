@@ -8,8 +8,6 @@ function Dashboard() {
   const user = useSelector(selectCurrentUser);
   const token = useSelector(selectCurrentToken);
 
-  console.log(user);
-
   return (
     <div className="font-inter bg-gray-100 flex justify-center items-center h-screen">
       <div className="flex flex-col py-8 justify-center gap-8 items-center bg-gray-300 h-1/2 w-1/2">

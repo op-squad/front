@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import brokenPicture from "../assets/broken.svg";
@@ -12,10 +13,11 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [pwdVisible, setPwdVisible] = useState(false);
 
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,26 +31,29 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      console.log("in the login action block");
+    await login({
+      username: user,
+      password: pwd,
+      email: "example@example.com",
+    })
+      .unwrap()
+      .then((token) => {
+        dispatch(setCredentials({ user: "anas", token: token.accessToken }));
 
-      const token = await login({
-        username: "admin",
-        password: "admin",
-        email: "example@example.com",
-      }).unwrap();
+        setUser("");
+        setPwd("");
 
-      console.log(token);
-      console.log(token.accessToken);
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        setErrMsg(`ERROR OCCURED: ${error?.data?.message}`);
+        errRef.current?.focus();
+      });
+  };
 
-      dispatch(setCredentials({ user: "anas", token: token.accessToken }));
-      setUser("");
-      setPwd("");
-      navigate("/dashboard");
-    } catch (err) {
-      setErrMsg(`ERROR OCCURED: ${err}`);
-      errRef.current?.focus();
-    }
+  const togglePwdVisibility = () => {
+    const newVal = !pwdVisible;
+    setPwdVisible(newVal);
   };
 
   const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -65,78 +70,97 @@ export default function Login() {
           alt="Broken Picture SVG"
         />
       </div>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div className="bg-gray-100 flex flex-grow ">
-          <div className="w-7/12  m-auto my-16">
-            {errMsg ? (
-              <h1>`Login Error: ${errMsg}`</h1>
-            ) : (
-              <div className="bg-gray-300 w-fit m-auto  py-2 px-8 mb-24">
-                Logo
-              </div>
-            )}
-            <div className="mb-8">
-              <p className="text-xl font-semibold">Welcome Back Doc!</p>
-              <p className="font-bold text-4xl">Let's log you in.</p>
+
+      <div className="bg-gray-100 flex flex-grow ">
+        <div className="w-7/12  m-auto my-16">
+          <div
+            className={`bg-gray-300 w-fit m-auto py-2 px-8 ${errMsg ? "mb-4" : "mb-24"}`}
+          >
+            Logo
+          </div>
+          {errMsg && (
+            <div className="bg-red-300 font-bold w-fit py-2 px-8 mb-4 text-center">
+              <p>{errMsg}</p>
             </div>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium"
-                >
-                  Username
-                </label>
+          )}
+          <div className="mb-8">
+            <p className="text-xl font-semibold">Welcome Back Doc!</p>
+            <p className="font-bold text-4xl">Let's log you in.</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium"
+              >
+                Username
+              </label>
+              <input
+                type="text"
+                ref={userRef}
+                autoComplete="on"
+                id="username"
+                className="mt-1 p-4 bg-gray-300 block w-full"
+                value={user}
+                onChange={handleUserInput}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium"
+              >
+                Password
+              </label>
+              <div className="relative flex">
                 <input
-                  type="text"
-                  ref={userRef}
-                  id="username"
-                  className="mt-1 p-4 bg-gray-300 block w-full"
-                  value="anas"
-                  onChange={handleUserInput}
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
+                  type={pwdVisible ? "text" : "password"}
                   id="password"
                   className="mt-1 bg-gray-300 mb-4 p-4 block w-full"
-                  value="12345"
+                  value={pwd}
                   onChange={handlePwdInput}
                   required
                 />
-                <label
-                  htmlFor="password"
-                  className="block mb-8 underline text-[12px] font-medium text-gray-600"
+                <button
+                  type="button"
+                  onClick={togglePwdVisibility}
                 >
-                  Can't log in?
-                </label>
+                  {pwdVisible ? (
+                    <FaEyeSlash
+                      size="1.5rem"
+                      className="absolute top-5 right-4"
+                    />
+                  ) : (
+                    <FaEye
+                      size="1.5rem"
+                      className="absolute top-5 right-4"
+                    />
+                  )}
+                </button>
               </div>
-              <button
-                type="submit"
-                className="bg-black font-bold mb-24 py-2 px-12  text-white"
+              <label
+                htmlFor="password"
+                className="block mb-8 underline text-[12px] font-medium text-gray-600"
               >
-                Login
-              </button>
-            </form>
+                Forget Password?
+              </label>
+            </div>
             <button
               type="submit"
-              className="bg-gray-300 py-2 w-full text-black font-bold"
+              className="bg-black font-bold mb-24 py-2 px-12  text-white"
             >
-              OR Login Using Google
+              Login
             </button>
-          </div>
+          </form>
+          <button
+            type="submit"
+            className="bg-gray-300 py-2 w-full text-black font-bold"
+          >
+            OR Login Using Google
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 }
