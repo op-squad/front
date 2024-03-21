@@ -1,19 +1,22 @@
 import { apiSlice } from "../../app/api/apiSlice";
 
-interface credentialsProps {
-  // For now only those, might change
-  email: string;
-  password: string;
-}
-
+/*
+ * Any endpoint definitions defined using that builder will be merged into the existing * endpoint definitions for this API slice
+ */
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (credentials: credentialsProps) => ({
-        url: "/login(Changeable)",
-        method: "POST",
-        body: { ...credentials },
-      }),
+      query: (body: { username: string; password: string; email: string }) => {
+        return {
+          url: "/login",
+          method: "POST",
+          body,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        };
+      },
     }),
   }),
 });
