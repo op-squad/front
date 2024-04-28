@@ -1,4 +1,5 @@
 import Sidebar from "../components/app/Sidebar";
+import StatCard from "../components/app/dashboard/StatCard";
 export default function Dashboard() {
   return (
     <div className="h-[1300px]">
@@ -9,7 +10,31 @@ export default function Dashboard() {
           <div className="flex gap-8 h-full">
             <div className="flex flex-col h-full gap-8 basis-[65%]">
               <div className="flex gap-8">
-                <div className="flex items-center bg-indigo-300 text-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
+                <StatCard
+                  card={{ cardName: "Patients", value: 145 }}
+                  style={{
+                    textColor: "text-blue-950",
+                    cardColor: "bg-indigo-300",
+                    circleColor: "bg-blue-50",
+                  }}
+                />
+                <StatCard
+                  card={{ cardName: "Appointments", value: 514 }}
+                  style={{
+                    textColor: "text-blue-50",
+                    cardColor: "bg-blue-950",
+                    circleColor: "bg-blue-50",
+                  }}
+                />
+                <StatCard
+                  card={{ cardName: "Model Reports", value: 64 }}
+                  style={{
+                    textColor: "bg-blue-50",
+                    cardColor: "text-indigo-950",
+                    circleColor: "bg-indigo-200",
+                  }}
+                />
+                {/* <div className="flex items-center bg-indigo-300 text-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
                   <div className="rounded-full w-[74px] h-[74px] bg-white"></div>
                   <div className="flex flex-col gap-2.5">
                     <p className="font-extrabold text-base">Appointments</p>
@@ -31,7 +56,7 @@ export default function Dashboard() {
                     </p>
                     <p className="text-white font-bold text-3xl">514</p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="flex flex-col gap-8 basis-1/2 bg-blue-50 rounded-xl p-8">
                 <p className="font-extrabold text-2xl text-blue-950">
