@@ -14,8 +14,8 @@ export default function Login() {
         <div className="w-7/12  m-auto my-16">
           <div className="bg-gray-300 w-fit m-auto  py-2 px-8 mb-24">Logo</div>
           <div className="mb-8">
-            <p className="text-xl font-semibold">Welcome Back Doc!</p>
-            <p className="font-bold text-4xl">Let's log you in.</p>
+            <p className="font-bold text-4xl">Login</p>
+            <p className="text-xl">Welcome back Doc! Let’s log you in.</p>
           </div>
           <form>
             <div className="mb-4">
