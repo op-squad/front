@@ -1,5 +1,7 @@
 import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
+// import MySvg from "../assets/stat_cards/1.svg";
+
 export default function Dashboard() {
   return (
     <div className="h-[1300px]">
@@ -11,27 +13,48 @@ export default function Dashboard() {
             <div className="flex flex-col h-full gap-8 basis-[65%]">
               <div className="flex gap-8">
                 <StatCard
-                  card={{ cardName: "Patients", value: 145 }}
+                  card={{
+                    cardName: "Patients",
+                    value: 145,
+                  }}
                   style={{
                     textColor: "text-blue-950",
                     cardColor: "bg-indigo-300",
                     circleColor: "bg-blue-50",
                   }}
+                  icon={{
+                    src: "src/assets/stat_cards/1.svg",
+                    alt: "bandage",
+                  }}
                 />
                 <StatCard
-                  card={{ cardName: "Appointments", value: 514 }}
+                  card={{
+                    cardName: "Appointments",
+                    value: 514,
+                  }}
                   style={{
                     textColor: "text-blue-50",
                     cardColor: "bg-blue-950",
                     circleColor: "bg-blue-50",
                   }}
+                  icon={{
+                    src: "src/assets/stat_cards/2.svg",
+                    alt: "diagnosis",
+                  }}
                 />
                 <StatCard
-                  card={{ cardName: "Model Reports", value: 64 }}
+                  card={{
+                    cardName: "Model Reports",
+                    value: 64,
+                  }}
                   style={{
                     textColor: "bg-blue-50",
                     cardColor: "text-indigo-950",
                     circleColor: "bg-indigo-200",
+                  }}
+                  icon={{
+                    src: "src/assets/stat_cards/3.svg",
+                    alt: "robot",
                   }}
                 />
                 {/* <div className="flex items-center bg-indigo-300 text-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
