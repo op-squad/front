@@ -57,29 +57,6 @@ export default function Dashboard() {
                     alt: "robot",
                   }}
                 />
-                {/* <div className="flex items-center bg-indigo-300 text-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
-                  <div className="rounded-full w-[74px] h-[74px] bg-white"></div>
-                  <div className="flex flex-col gap-2.5">
-                    <p className="font-extrabold text-base">Appointments</p>
-                    <p className="font-bold text-3xl">514</p>
-                  </div>
-                </div>
-                <div className="flex items-center bg-blue-50 text-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
-                  <div className="rounded-full w-[74px] h-[74px] bg-indigo-200"></div>
-                  <div className="flex flex-col gap-2.5">
-                    <p className="font-extrabold text-base">Appointments</p>
-                    <p className="font-bold text-3xl">514</p>
-                  </div>
-                </div>
-                <div className="flex items-center bg-blue-950 h-40 gap-6 basis-1/3 rounded-xl px-11">
-                  <div className="rounded-full w-[74px] h-[74px] bg-white"></div>
-                  <div className="flex flex-col gap-2.5">
-                    <p className="text-white font-extrabold text-base">
-                      Appointments
-                    </p>
-                    <p className="text-white font-bold text-3xl">514</p>
-                  </div>
-                </div> */}
               </div>
               <div className="flex flex-col gap-8 basis-1/2 bg-blue-50 rounded-xl p-8">
                 <p className="font-extrabold text-2xl text-blue-950">
