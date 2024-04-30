@@ -1,6 +1,7 @@
 import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
 // import MySvg from "../assets/stat_cards/1.svg";
+import DropdownMenu from "../components/app/DropdownMenu";
 
 export default function Dashboard() {
   return (
@@ -81,14 +82,58 @@ export default function Dashboard() {
               </div>
             </div>
             <div className="flex flex-col gap-8 basis-[35%] h-max">
-              <div className="bg-blue-950 rounded-xl text-white p-8">asdf</div>
-              <div className="bg-blue-950 rounded-xl text-white p-8">
-                <div>
-                  <p>Schedule</p>
-                  <div>Menu</div>
+              <div className="bg-blue-50 rounded-xl p-8">
+                <p className="font-extrabold text-2xl text-blue-950">
+                  To be determined
+                </p>
+              </div>
+              <div className="flex flex-col gap-6 bg-blue-50 text-blue-950 rounded-xl p-8">
+                <div className="flex justify-between">
+                  <p className="font-extrabold text-2xl text-blue-950">
+                    Schedule
+                  </p>
+                  <DropdownMenu />
                 </div>
-                <div>Calendar</div>
-                <div>Short Appointment List</div>
+                <hr className="mx-[-32px]" />
+                <div>Calendar</div> {/*todo later*/}
+                <hr className="mx-[-32px]" />
+                <div className="flex flex-col gap-4">
+                  <div className="flex justify-between items-end">
+                    <div className="flex flex-col gap-0.5">
+                      <p className="text-sm font-bold text-neutral-400">
+                        10:30am - 11:00am
+                      </p>
+                      <p className="text-lg font-semibold">Patient Checkup</p>
+                    </div>
+                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
+                      View Details
+                    </p>
+                  </div>
+                  <hr />
+                  <div className="flex justify-between items-end">
+                    <div className="flex flex-col gap-0.5">
+                      <p className="text-sm font-bold text-neutral-400">
+                        10:30am - 11:00am
+                      </p>
+                      <p className="text-base font-semibold">Patient Checkup</p>
+                    </div>
+                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
+                      View Details
+                    </p>
+                  </div>
+                  <hr />
+                  <div className="flex justify-between items-end">
+                    <div className="flex flex-col gap-0.5">
+                      <p className="text-sm font-bold text-neutral-400">
+                        10:30am - 11:00am
+                      </p>
+                      <p className="text-lg font-semibold">Patient Checkup</p>
+                    </div>
+                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
+                      View Details
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
