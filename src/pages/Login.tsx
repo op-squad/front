@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import brokenPicture from "../assets/broken.svg";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { setCredentials } from "../features/auth/authSlice";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
 
 export default function Login() {
   const userRef = useRef<HTMLInputElement | null>(null);
@@ -62,17 +64,16 @@ export default function Login() {
     setPwd(e.target.value);
 
   return (
-    <div className="flex font-inter">
-      <div className="flex justify-center items-center bg-gray-300 h-screen w-7/12">
+    <div className="flex font-inter h-dvh ">
+      <div className="flex justify-center items-center  h-full bg-gray-300 w-7/12">
         <img
           src={brokenPicture}
           className="w-4/12"
           alt="Broken Picture SVG"
         />
       </div>
-
-      <div className="bg-gray-100 flex flex-grow ">
-        <div className="w-7/12  m-auto my-16">
+      <div className="bg-gray-200 flex h-full flex-grow ">
+        <div className="w-7/12  m-auto my-16 ">
           <div
             className={`bg-gray-300 w-fit m-auto py-2 px-8 ${errMsg ? "mb-4" : "mb-24"}`}
           >
@@ -87,24 +88,20 @@ export default function Login() {
             <p className="text-xl font-semibold">Welcome Back Doc!</p>
             <p className="font-bold text-4xl">Let's log you in.</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form
+            className="flex flex-col"
+            onSubmit={handleSubmit}
+          >
             <div className="mb-4">
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium"
-              >
-                Username
-              </label>
-              <input
-                type="text"
-                ref={userRef}
+              <Input
+                label="Username"
                 autoComplete="on"
-                id="username"
-                className="mt-1 p-4 bg-gray-300 block w-full"
+                ref={userRef}
                 value={user}
                 onChange={handleUserInput}
+                id="username"
                 required
-              />
+              ></Input>
             </div>
             <div className="mb-4">
               <label
@@ -117,7 +114,7 @@ export default function Login() {
                 <input
                   type={pwdVisible ? "text" : "password"}
                   id="password"
-                  className="mt-1 bg-gray-300 mb-4 p-4 block w-full"
+                  className="mt-1 bg-gray-300 mb-4 rounded-md p-4 block w-full"
                   value={pwd}
                   onChange={handlePwdInput}
                   required
@@ -143,22 +140,11 @@ export default function Login() {
                 htmlFor="password"
                 className="block mb-8 underline text-[12px] font-medium text-gray-600"
               >
-                Forget Password?
+                Forgot Password?
               </label>
             </div>
-            <button
-              type="submit"
-              className="bg-black font-bold mb-24 py-2 px-12  text-white"
-            >
-              Login
-            </button>
+            <Button variant="primary">Login</Button>
           </form>
-          <button
-            type="submit"
-            className="bg-gray-300 py-2 w-full text-black font-bold"
-          >
-            OR Login Using Google
-          </button>
         </div>
       </div>
     </div>
