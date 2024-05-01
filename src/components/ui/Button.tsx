@@ -15,14 +15,17 @@ export default function Button({ className, variant, ...props }: ButtonProps) {
   );
 }
 
-const buttonVariants = cva("py-2 px-12 font-bold rounded-md hover:opacity-80", {
-  variants: {
-    variant: {
-      primary: "bg-blue-custom text-white",
-      secondary: "bg-gray-200 text-primary",
+const buttonVariants = cva(
+  "py-[9px] px-12 text-sm font-bold rounded-md hover:opacity-80",
+  {
+    variants: {
+      variant: {
+        primary: "bg-blue-custom text-white",
+        secondary: "bg-gray-200 text-primary",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
     },
   },
-  defaultVariants: {
-    variant: "primary",
-  },
-});
+);

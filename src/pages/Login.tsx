@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import brokenPicture from "../assets/broken.svg";
 import { useLoginMutation } from "../features/auth/authApiSlice";
 import { setCredentials } from "../features/auth/authSlice";
 import Button from "../components/ui/Button";
@@ -64,35 +63,33 @@ export default function Login() {
     setPwd(e.target.value);
 
   return (
-    <div className="flex font-inter h-dvh ">
-      <div className="flex justify-center items-center  h-full bg-gray-300 w-7/12">
-        <img
-          src={brokenPicture}
-          className="w-4/12"
-          alt="Broken Picture SVG"
-        />
-      </div>
-      <div className="bg-gray-200 flex h-full flex-grow ">
+    <div className="flex  bg-gray-50 h-dvh ">
+      <div className="bg-gray-50 flex items-center h-full flex-grow ">
         <div className="w-7/12  m-auto my-16 ">
-          <div
-            className={`bg-gray-300 w-fit m-auto py-2 px-8 ${errMsg ? "mb-4" : "mb-24"}`}
-          >
-            Logo
-          </div>
           {errMsg && (
             <div className="bg-red-300 font-bold w-fit py-2 px-8 mb-4 text-center">
               <p>{errMsg}</p>
             </div>
           )}
-          <div className="mb-8">
-            <p className="text-xl font-semibold">Welcome Back Doc!</p>
-            <p className="font-bold text-4xl">Let's log you in.</p>
+          <div className="mb-12">
+            <p className="font-extrabold text-primary font-Raleway mb-4 text-4xl">
+              Login
+            </p>
+            <p className="text-sm font-light font-Raleway text-primary opacity-60">
+              Welcome back Doc! Let's log you in.
+            </p>
           </div>
           <form
-            className="flex flex-col"
+            className="flex flex-col mb-8"
             onSubmit={handleSubmit}
           >
             <div className="mb-4">
+              <label
+                htmlFor="username"
+                className="block text-xs font-light"
+              >
+                Username
+              </label>
               <Input
                 label="Username"
                 autoComplete="on"
@@ -106,46 +103,68 @@ export default function Login() {
             <div className="mb-4">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium"
+                className="block text-xs font-light"
               >
                 Password
               </label>
-              <div className="relative flex">
-                <input
+              <div className="relative mb-3 ">
+                <Input
                   type={pwdVisible ? "text" : "password"}
                   id="password"
-                  className="mt-1 bg-gray-300 mb-4 rounded-md p-4 block w-full"
                   value={pwd}
+                  className="font-Lato"
                   onChange={handlePwdInput}
                   required
-                />
-                <button
-                  type="button"
-                  onClick={togglePwdVisibility}
-                >
-                  {pwdVisible ? (
-                    <FaEyeSlash
-                      size="1.5rem"
-                      className="absolute top-5 right-4"
-                    />
-                  ) : (
-                    <FaEye
-                      size="1.5rem"
-                      className="absolute top-5 right-4"
-                    />
-                  )}
-                </button>
+                ></Input>
+
+                {pwdVisible ? (
+                  <FaEye
+                    size="1.25rem"
+                    onClick={togglePwdVisibility}
+                    className="absolute text-gray-700 right-4 top-[11px]"
+                  />
+                ) : (
+                  <FaEyeSlash
+                    size="1.25rem"
+                    onClick={togglePwdVisibility}
+                    className="absolute right-4 text-gray-700 top-[11px] "
+                  />
+                )}
               </div>
               <label
                 htmlFor="password"
-                className="block mb-8 underline text-[12px] font-medium text-gray-600"
+                className="block mb-4 text-[11px] underline text-gray-400"
               >
-                Forgot Password?
+                Can't log in?
               </label>
             </div>
-            <Button variant="primary">Login</Button>
+            <Button
+              variant="primary"
+              className="font-Raleway"
+            >
+              Login
+            </Button>
           </form>
+          <Button
+            variant="secondary"
+            className="font-Raleway mb-8 w-full"
+          >
+            Log in with Google
+          </Button>
+          <p className="text-xs font-light text-primary opacity-60">
+            You don't have an account?&nbsp;&nbsp;
+            <span className="underline  text-blue-custom font-semibold">
+              Sign up
+            </span>
+          </p>
         </div>
+      </div>
+      <div className="flex justify-center items-center  h-full w-7/12">
+        <img
+          src="src/assets/login-picture.jpeg"
+          className="object-cover drop-shadow-sm h-full w-full rounded-tl-[96px]"
+          alt="Broken Picture SVG"
+        />
       </div>
     </div>
   );

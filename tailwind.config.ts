@@ -7,10 +7,13 @@ const config: Config = {
       colors: {
         primary: "#000022",
         "blue-custom": "#393DD8",
+        "gray-input": "#B9BEBF",
+        "gray-input-border": "#DEE4E6",
       },
     },
     fontFamily: {
-      inter: ["Inter", "sans-serif"],
+      Raleway: ["Raleway", "sans-serif"],
+      Lato: ["Lato", "sans-serif"],
     },
   },
   plugins: [],
