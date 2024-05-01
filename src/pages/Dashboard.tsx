@@ -2,6 +2,7 @@ import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
 import DropdownMenu from "../components/app/DropdownMenu";
 import BarChart from "../components/app/dashboard/BarChart";
+import Calendar from "../components/app/dashboard/Calendar";
 
 export default function Dashboard() {
   return (
@@ -85,7 +86,7 @@ export default function Dashboard() {
                   <DropdownMenu />
                 </div>
                 <hr className="mx-[-32px]" />
-                <div>Calendar</div> {/*todo later*/}
+                <Calendar />
                 <hr className="mx-[-32px]" />
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-between items-end">
@@ -105,7 +106,7 @@ export default function Dashboard() {
                       <p className="text-sm font-bold text-gray-400">
                         10:30am - 11:00am
                       </p>
-                      <p className="text-base font-semibold">Patient Checkup</p>
+                      <p className="text-lg font-semibold">Patient Checkup</p>
                     </div>
                     <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
                       View Details
