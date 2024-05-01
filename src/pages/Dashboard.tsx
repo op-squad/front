@@ -12,27 +12,27 @@ function BarChart() {
   const marginRight = 0;
   const marginBottom = 30;
   const marginLeft = 40;
-  const data = [
-    "Jan",
-    "Feb",
-    " Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const freq = [1200, 1000, 800, 600, 400, 200, 0];
   const ref = useRef();
   useEffect(() => {
+    const data = [
+      { label: "Jan", value: 512 },
+      { label: "Feb", value: 254 },
+      { label: "Mar", value: 684 },
+      { label: "Apr", value: 823 },
+      { label: "May", value: 564 },
+      { label: "Jun", value: 497 },
+      { label: "Jul", value: 185 },
+      { label: "Aug", value: 213 },
+      { label: "Sep", value: 345 },
+      { label: "Oct", value: 387 },
+      { label: "Nov", value: 488 },
+      { label: "Dec", value: 132 },
+    ];
     const xScale = d3
       .scaleBand()
-      .domain(data)
-      .range([marginLeft, width - marginRight]);
+      .domain(data.map((e) => e.label))
+      .range([marginLeft, width - marginRight])
+      .padding(0.5);
     const svgElement = d3.select(ref.current);
     svgElement
       .append("g")
@@ -75,6 +75,17 @@ function BarChart() {
           .style("font-size", "14px")
           .classed("text-gray-500", true),
       );
+    svgElement
+      .append("g")
+      .attr("fill", "#818cf8")
+      .selectAll()
+      .data(data)
+      .join("rect")
+      .attr("x", (d) => xScale(d.label))
+      .attr("y", (d) => yScale(d.value) + 1)
+      .attr("height", (d) => yScale(0) - yScale(d.value))
+      .attr("width", xScale.bandwidth())
+      .attr("rx", 5);
   }, []);
   // const x = d3.scaleBand().domain(data).range();
   // console.log(x);
@@ -187,7 +198,7 @@ export default function Dashboard() {
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-between items-end">
                     <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-neutral-400">
+                      <p className="text-sm font-bold text-gray-400">
                         10:30am - 11:00am
                       </p>
                       <p className="text-lg font-semibold">Patient Checkup</p>
@@ -199,7 +210,7 @@ export default function Dashboard() {
                   <hr />
                   <div className="flex justify-between items-end">
                     <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-neutral-400">
+                      <p className="text-sm font-bold text-gray-400">
                         10:30am - 11:00am
                       </p>
                       <p className="text-base font-semibold">Patient Checkup</p>
@@ -211,7 +222,7 @@ export default function Dashboard() {
                   <hr />
                   <div className="flex justify-between items-end">
                     <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-neutral-400">
+                      <p className="text-sm font-bold text-gray-400">
                         10:30am - 11:00am
                       </p>
                       <p className="text-lg font-semibold">Patient Checkup</p>
