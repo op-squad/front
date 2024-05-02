@@ -163,7 +163,7 @@ export default function Login() {
         <img
           src="src/assets/login-picture.jpeg"
           className="object-cover drop-shadow-sm h-full w-full rounded-tl-[96px]"
-          alt="Broken Picture SVG"
+          alt="Doctor picture"
         />
       </div>
     </div>
