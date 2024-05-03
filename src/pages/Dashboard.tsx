@@ -1,7 +1,7 @@
 import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
 import BarChart from "../components/app/dashboard/BarChart";
-import ScheduleCard from "../components/app/dashboard/ScheduleCard";
+import ScheduleCard from "../components/app/dashboard/ScheduleCard/ScheduleCard";
 
 export default function Dashboard() {
   return (
