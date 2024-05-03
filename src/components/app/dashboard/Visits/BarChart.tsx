@@ -7,7 +7,6 @@ export default function BarChart({ height, width }) {
   const marginLeft = 40;
   const ref = useRef();
   useEffect(() => {
-    console.log(ref);
     ref.current.innerHTML = "";
     const data = [
       { label: "Jan", value: 512 },

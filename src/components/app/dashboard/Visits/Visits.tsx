@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import BarChart from "./BarChart";
 
@@ -29,7 +30,6 @@ export default function Visits() {
   };
   const chartRef = useRef(null);
   const chartSize = useDimensions(chartRef);
-  console.log(chartSize);
   return (
     <div className="flex flex-col gap-8 bg-blue-50 rounded-xl max-w-full p-8">
       <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">

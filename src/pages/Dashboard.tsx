@@ -2,6 +2,7 @@ import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
 import ScheduleCard from "../components/app/dashboard/ScheduleCard/ScheduleCard";
 import Visits from "../components/app/dashboard/Visits/Visits";
+import PatientListCard from "../components/app/dashboard/PatientList/PatientListCard";
 
 export default function Dashboard() {
   return (
@@ -9,7 +10,7 @@ export default function Dashboard() {
       <Sidebar />
       <div className="flex flex-col gap-8 w-full h-full p-8 overflow-y-auto bg-blue-100">
         <div className="text-4xl font-extrabold py-4 text-blue-950">Home</div>
-        <div className="flex gap-8 h-full">
+        <div className="flex gap-8 h-fit">
           <div className="flex flex-col h-full gap-8 basis-[65%]">
             <div className="flex gap-4">
               <StatCard
@@ -59,11 +60,7 @@ export default function Dashboard() {
               />
             </div>
             <Visits />
-            <div className="flex flex-col gap-8 bg-blue-50 rounded-xl p-8">
-              <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">
-                Patient List
-              </p>
-            </div>
+            <PatientListCard />
           </div>
           <div className="flex flex-col gap-8 h-max basis-[35%]">
             <div className="bg-blue-50 rounded-xl p-8">
