@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import PasswordReset from "./pages/PasswordReset";
 import Register from "./pages/Registration";
+import RegisterDetails from "@pages/RegisterDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/register/details",
+    element: <RegisterDetails />,
   },
   {
     path: "/password-reset",

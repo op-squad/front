@@ -14,7 +14,29 @@ export const authApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+    doctorRegister: builder.mutation({
+      query: (body: { username: string; password: string; email: string }) => {
+        return {
+          url: "/doctor/register",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    assistantRegister: builder.mutation({
+      query: (body: { username: string; password: string; email: string }) => {
+        return {
+          url: "/assistant/register",
+          method: "POST",
+          body,
+        };
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApiSlice;
+export const {
+  useLoginMutation,
+  useAssistantRegisterMutation,
+  useDoctorRegisterMutation,
+} = authApiSlice;

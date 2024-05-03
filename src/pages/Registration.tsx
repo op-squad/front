@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import { Label } from "@components/ui/Label";
+import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
 import Button from "@components/ui/Button";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Input from "@components/ui/Input";
@@ -60,7 +62,7 @@ export default function Register() {
   }, [pwd, matchPwd]);
 
   useEffect(() => {
-    setErrMsg("");
+    // setErrMsg("");
   }, [user, pwd, matchPwd]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +70,7 @@ export default function Register() {
 
     // if button enabled with JS hack
     const v1 = USER_REGEX.test(user);
-    const v2 = PWD_REGEX.test(email);
+    const v2 = EMAIL_REGEX.test(email);
     const v3 = PWD_REGEX.test(pwd);
     if (!v1 || !v2 || !v3) {
       toast({
@@ -77,33 +79,11 @@ export default function Register() {
         description: "There was a problem with your request.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
+      console.log("im here");
 
       return;
     }
-    // await login({
-    //   username: user,
-    //   password: pwd,
-    //   email: "example@example.com",
-    // })
-    //   .unwrap()
-    //   .then((token) => {
-    //     dispatch(setCredentials({ user: "anas", token: token.accessToken }));
-    // setUser("");
-    // setPwd("");
-    // setMatchPwd("");
-
-    //     navigate("/dashboard");
-    //   })
-    //   .catch((error) => {
-    //   if (!error?.response) {
-    //     setErrMsg('No Server Response');
-    // } else if (errror.response?.status === 409) {
-    //     setErrMsg('Username Taken');
-    // } else {
-    //     setErrMsg('Registration Failed')
-    // }
-    // errRef.current?.focus();
-    //   });
+    // navigate("register/details");
   };
 
   const togglePwdVisibility = () => {
@@ -128,10 +108,7 @@ export default function Register() {
               Sign Up
             </p>
           </div>
-          <form
-            className="mb-8"
-            onSubmit={handleSubmit}
-          >
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
                 htmlFor="username"
@@ -243,7 +220,7 @@ export default function Register() {
                   Passwords must match.
                 </p>
               </label>
-              <div className="relative mb-8 ">
+              <div className="relative mb-6 ">
                 <Input
                   type={pwdVisible ? `text` : `password`}
                   id="confirm_pwd"
@@ -271,23 +248,48 @@ export default function Register() {
                 )}
               </div>
             </div>
+            <RadioGroup
+              className="flex justify-around mb-6"
+              defaultValue="assistant"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value="assistant"
+                  id="assistant"
+                />
+                <Label htmlFor="assistant">Assistant</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem
+                  value="doctor"
+                  id="doctor"
+                />
+                <Label htmlFor="doctor">Doctor</Label>
+              </div>
+            </RadioGroup>
+
             <Button
               variant="primary"
               typeof="submit"
+              // disabled={!validName || !validPwd || !validMatch ? true : false}
               aria-disabled={
                 !validName || !validPwd || !validMatch ? true : false
               }
-              className="font-Raleway w-full"
+              className={`font-Raleway w-full ${
+                !validName || !validPwd || !validMatch
+                  ? "opacity-40 hover:cursor-not-allowed"
+                  : ""
+              }`}
             >
               Create an account
             </Button>
           </form>
-          <Button
+          {/* <Button
             variant="secondary"
             className="font-Raleway mb-8 w-full"
           >
             Sign up with Google
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
