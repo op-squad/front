@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {},
     fontFamily: {
-      inter: ["Inter", "sans-serif"],
+      inter: ["Raleway", "sans-serif"],
     },
   },
   plugins: [],
