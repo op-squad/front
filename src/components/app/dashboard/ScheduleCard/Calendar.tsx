@@ -1,6 +1,7 @@
 import moment from "moment";
 
-function Day({ index, startOfMonth, currentDay, setCurrentDay }) {
+function Day({ index, currentDay, setCurrentDay }) {
+  const startOfMonth = currentDay.clone().startOf("month").day() + 1;
   let style =
     "flex justify-center items-center rounded-full h-9 cursor-pointer";
   if (index == 1) {
@@ -24,12 +25,9 @@ function Day({ index, startOfMonth, currentDay, setCurrentDay }) {
 }
 
 export default function Calendar({ currentDay, setCurrentDay }) {
-  const start =
-    ((((currentDay.day() - currentDay.date() + 1) % 7) + 7) % 7) + 1;
   const days = [...Array(currentDay.daysInMonth())].map((e, i) => (
     <Day
       index={i + 1}
-      startOfMonth={start}
       currentDay={currentDay}
       setCurrentDay={setCurrentDay}
     />
