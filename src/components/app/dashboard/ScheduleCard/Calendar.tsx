@@ -1,11 +1,11 @@
 import moment from "moment";
 
 function Day({ index, currentDay, setCurrentDay }) {
-  const startOfMonth = currentDay.clone().startOf("month").day() + 1;
+  const startOfMonth = currentDay.clone().date(1).day() + 1;
   let style =
     "flex justify-center items-center before:content-[''] before:size-8 2xl:before:size-10 before:rounded-full relative before:absolute before:-z-10 z-0 cursor-pointer";
   if (index == 1) {
-    style += " col-start-" + startOfMonth;
+    style += " col-start-" + startOfMonth.toString();
   }
   if (index != currentDay.date()) {
     style += " before:hover:bg-blue-600 hover:text-blue-50";
