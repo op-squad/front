@@ -1,8 +1,7 @@
 import Sidebar from "../components/app/Sidebar";
 import StatCard from "../components/app/dashboard/StatCard";
-import DropdownMenu from "../components/app/DropdownMenu";
 import BarChart from "../components/app/dashboard/BarChart";
-import Calendar from "../components/app/dashboard/Calendar";
+import ScheduleCard from "../components/app/dashboard/ScheduleCard";
 
 export default function Dashboard() {
   return (
@@ -78,54 +77,7 @@ export default function Dashboard() {
                   To be determined
                 </p>
               </div>
-              <div className="flex flex-col gap-6 bg-blue-50 text-blue-950 rounded-xl p-8">
-                <div className="flex justify-between">
-                  <p className="font-extrabold text-2xl text-blue-950">
-                    Schedule
-                  </p>
-                  <DropdownMenu />
-                </div>
-                <hr className="mx-[-32px]" />
-                <Calendar />
-                <hr className="mx-[-32px]" />
-                <div className="flex flex-col gap-4">
-                  <div className="flex justify-between items-end">
-                    <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-gray-400">
-                        10:30am - 11:00am
-                      </p>
-                      <p className="text-lg font-semibold">Patient Checkup</p>
-                    </div>
-                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
-                      View Details
-                    </p>
-                  </div>
-                  <hr />
-                  <div className="flex justify-between items-end">
-                    <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-gray-400">
-                        10:30am - 11:00am
-                      </p>
-                      <p className="text-lg font-semibold">Patient Checkup</p>
-                    </div>
-                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
-                      View Details
-                    </p>
-                  </div>
-                  <hr />
-                  <div className="flex justify-between items-end">
-                    <div className="flex flex-col gap-0.5">
-                      <p className="text-sm font-bold text-gray-400">
-                        10:30am - 11:00am
-                      </p>
-                      <p className="text-lg font-semibold">Patient Checkup</p>
-                    </div>
-                    <p className="text-sm font-semibold text-blue-700 hover:underline cursor-pointer">
-                      View Details
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <ScheduleCard />
             </div>
           </div>
         </div>

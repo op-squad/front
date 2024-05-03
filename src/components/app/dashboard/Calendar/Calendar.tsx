@@ -1,11 +1,10 @@
 import moment from "moment";
-import { useState } from "react";
 
-function Day({ index, startOfMonth, currentDay, onClick }) {
+function Day({ index, startOfMonth, currentDay, setCurrentDay }) {
   let style =
     "flex justify-center items-center rounded-full h-9 cursor-pointer";
   if (index == 1) {
-    style += ` col-start-${startOfMonth}`;
+    style += " col-start-" + startOfMonth;
   }
   if (index != currentDay.date()) {
     style += " hover:bg-blue-600 hover:text-blue-50";
@@ -16,7 +15,7 @@ function Day({ index, startOfMonth, currentDay, onClick }) {
   return (
     <div
       className={style}
-      onClick={() => onClick(moment(currentDay).date(index))}
+      onClick={() => setCurrentDay(moment(currentDay).date(index))}
       key={index}
     >
       {index}
@@ -24,18 +23,16 @@ function Day({ index, startOfMonth, currentDay, onClick }) {
   );
 }
 
-export default function Calendar() {
-  const today = moment("2024-06-23");
-  const [currentDay, setCurrentDay] = useState(today);
-  console.log(currentDay.date());
+export default function Calendar({ currentDay, setCurrentDay }) {
   const start =
     ((((currentDay.day() - currentDay.date() + 1) % 7) + 7) % 7) + 1;
+  console.log(start);
   const days = [...Array(currentDay.daysInMonth())].map((e, i) => (
     <Day
       index={i + 1}
       startOfMonth={start}
       currentDay={currentDay}
-      onClick={setCurrentDay}
+      setCurrentDay={setCurrentDay}
     />
   ));
   return (
