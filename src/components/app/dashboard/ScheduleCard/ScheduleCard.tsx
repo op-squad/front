@@ -10,7 +10,9 @@ export default function ScheduleCard() {
   return (
     <div className="flex flex-col gap-6 bg-blue-50 text-blue-950 rounded-xl p-8">
       <div className="flex justify-between">
-        <p className="font-extrabold text-2xl text-blue-950">Schedule</p>
+        <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">
+          Schedule
+        </p>
         <CalendarController
           date={date}
           setDate={setDate}

@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
-export default function BarChart() {
-  const height = 340;
-  const width = 940;
+export default function BarChart({ height, width }) {
   const marginTop = 30;
   const marginRight = 0;
   const marginBottom = 30;
   const marginLeft = 40;
   const ref = useRef();
   useEffect(() => {
+    console.log(ref);
+    ref.current.innerHTML = "";
     const data = [
       { label: "Jan", value: 512 },
       { label: "Feb", value: 254 },
@@ -80,7 +80,7 @@ export default function BarChart() {
       .attr("height", (d) => yScale(0) - yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("rx", 5);
-  }, []);
+  }, [height, width]);
   return (
     <svg
       ref={ref}
