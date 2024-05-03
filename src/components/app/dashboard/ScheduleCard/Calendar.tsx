@@ -26,7 +26,6 @@ function Day({ index, startOfMonth, currentDay, setCurrentDay }) {
 export default function Calendar({ currentDay, setCurrentDay }) {
   const start =
     ((((currentDay.day() - currentDay.date() + 1) % 7) + 7) % 7) + 1;
-  console.log(start);
   const days = [...Array(currentDay.daysInMonth())].map((e, i) => (
     <Day
       index={i + 1}
