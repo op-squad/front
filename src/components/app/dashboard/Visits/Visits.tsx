@@ -19,11 +19,11 @@ export default function Visits() {
     useEffect(() => {
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
-    });
+    }, []);
 
     useLayoutEffect(() => {
       handleResize();
-    });
+    }, []);
 
     return dimensions;
   };
