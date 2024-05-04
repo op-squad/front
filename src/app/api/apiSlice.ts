@@ -3,7 +3,7 @@ import { RootState } from "../store";
 
 export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_URL,
+    baseUrl: "http://localhost:8080",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
