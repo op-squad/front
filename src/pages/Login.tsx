@@ -6,11 +6,14 @@ import { useLoginMutation } from "../features/auth/authApiSlice";
 import { setCredentials } from "../features/auth/authSlice";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
+import { useToast } from "@components/ui/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
+import { Toaster } from "../toaster";
 
 export default function Login() {
   const userRef = useRef<HTMLInputElement | null>(null);
-  const errRef = useRef<HTMLInputElement | null>(null);
 
+  const { toast } = useToast();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -18,7 +21,7 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -35,20 +38,24 @@ export default function Login() {
     await login({
       username: user,
       password: pwd,
-      email: "example@example.com",
+      email: user,
     })
       .unwrap()
       .then((token) => {
-        dispatch(setCredentials({ user: "anas", token: token.accessToken }));
+        dispatch(setCredentials({ user: user, token: token.accessToken }));
 
         setUser("");
         setPwd("");
 
         navigate("/dashboard");
       })
-      .catch((error) => {
-        setErrMsg(`ERROR OCCURED: ${error?.data?.message}`);
-        errRef.current?.focus();
+      .catch((err) => {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: err.data.message,
+          action: <ToastAction altText="Try again">Try again</ToastAction>,
+        });
       });
   };
 
@@ -64,6 +71,7 @@ export default function Login() {
 
   return (
     <div className="flex  bg-gray-50 h-dvh ">
+      <Toaster />
       <div className="bg-gray-50 flex items-center h-full flex-grow ">
         <div className="w-7/12  m-auto my-16 ">
           {errMsg && (
@@ -142,7 +150,7 @@ export default function Login() {
               variant="primary"
               className="font-Raleway"
             >
-              Login
+              {isLoading ? `Loading...` : `Login`}
             </Button>
           </form>
           <Button

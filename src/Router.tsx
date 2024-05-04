@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import PasswordReset from "./pages/PasswordReset";
 import Register from "./pages/Registration";
 import RegisterDetails from "@pages/RegisterDetails";
+import EmailVerification from "@pages/EmailVerification";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/register/details",
     element: <RegisterDetails />,
+  },
+  {
+    path: "/email-verify",
+    element: <EmailVerification />,
   },
   {
     path: "/password-reset",

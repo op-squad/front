@@ -32,6 +32,36 @@ export const authApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    verify: builder.mutation({
+      query: (body: { code: string }) => {
+        return {
+          url: "/verify",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+
+    pwdForgot: builder.mutation({
+      query: (body: { email: string }) => {
+        return {
+          url: "/password/forgot",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+
+    pwdReset: builder.mutation({
+      query: (body: { passwordResetToken: string; password: string }) => {
+        return {
+          url: "/password/reset",
+          method: "POST",
+          body,
+        };
+      },
+    }),
   }),
 });
 
@@ -39,4 +69,7 @@ export const {
   useLoginMutation,
   useAssistantRegisterMutation,
   useDoctorRegisterMutation,
+  useVerifyMutation,
+  usePwdForgotMutation,
+  usePwdResetMutation,
 } = authApiSlice;

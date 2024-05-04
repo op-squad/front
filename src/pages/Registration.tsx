@@ -1,11 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-// import { Label } from "@components/ui/Label";
 import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
 import Button from "@components/ui/Button";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Input from "@components/ui/Input";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LuAlertCircle } from "react-icons/lu";
 import { useToast } from "@components/ui/use-toast";
 import { ToastAction } from "@components/ui/Toast";
@@ -39,9 +37,8 @@ const FormSchema = z.object({
 
 export default function Register() {
   const userRef = useRef<HTMLInputElement | null>(null);
-  // const errorRef = useRef<HTMLInputElement | null>(null);
 
-  const [pwdVisible, setPwdVisible] = useState(true);
+  const [pwdVisible, setPwdVisible] = useState(false);
 
   const [email, setEmail] = useState("");
   const [validEmail, setValidEmail] = useState(false);
@@ -61,10 +58,7 @@ export default function Register() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // const [errMsg, setErrMsg] = useState("");
-
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { toast } = useToast();
 
@@ -84,10 +78,6 @@ export default function Register() {
     setValidPwd(PWD_REGEX.test(pwd));
     setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd]);
-
-  useEffect(() => {
-    // setErrMsg("");
-  }, [user, pwd, matchPwd]);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -125,7 +115,6 @@ export default function Register() {
         .unwrap()
         .then((result) => {
           console.log(result);
-          setIsLoading(false);
           toast({
             title: "Your operation was successful",
             description: "Redirecting to verification page...",
@@ -139,6 +128,7 @@ export default function Register() {
             description: err.data.message,
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
+          return;
         });
     }
 
@@ -152,7 +142,6 @@ export default function Register() {
         .then((result) => {
           console.log(result);
 
-          setIsLoading(false);
           toast({
             title: "Your operation was successful",
             description: "Redirecting to email verification page...",
@@ -168,9 +157,12 @@ export default function Register() {
             description: err.data.message,
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
+          return;
         });
     }
-    // navigate("register/details");
+
+    setIsLoading(false);
+    navigate("/email-verify");
   }
 
   const togglePwdVisibility = () => {
