@@ -5,7 +5,7 @@ export default function NotFound() {
         <p className="font-bold text-4xl text-center whitespace-nowrap">
           ERROR 404 - PAGE NOT FOUND
         </p>
-        <p className="text-base font-extralight mb-8">Get Back To Home Page</p>
+        <p className="text-md font-extralight mb-8">Get Back To Home Page</p>
       </div>
     </div>
   );
