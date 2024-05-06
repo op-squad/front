@@ -9,7 +9,9 @@ export default function Dashboard() {
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
       <div className="flex flex-col gap-8 w-full h-full p-8 overflow-y-auto bg-blue-100">
-        <div className="text-4xl font-extrabold py-4 text-blue-950">Home</div>
+        <h1 className="text-4xl 2xl:text-5xl font-extrabold py-4 text-blue-950">
+          Dashboard
+        </h1>
         <div className="flex gap-8 h-fit">
           <div className="flex flex-col h-full gap-8 basis-[65%]">
             <div className="flex gap-4">

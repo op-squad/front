@@ -1,6 +1,7 @@
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
 import { FaPowerOff } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
 
 export default function Sidebar() {
   return (
@@ -19,14 +20,25 @@ export default function Sidebar() {
         </div>
       </div>
       <Nav />
-      <div className="flex flex-col w-full">
-        <Link
-          className="flex gap-4 items-center justify-left pl-20 py-5 2xl:py-7 text-sm 2xl:text-base text-center font-bold hover:bg-indigo-700"
-          to="/dashboard"
-        >
-          <FaPowerOff size={20} />
-          Logout
-        </Link>
+      <div className="flex flex-col items-center text-neutral-50 w-full">
+        <div className="flex flex-col w-full">
+          <Link
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            to="/settings"
+          >
+            <IoSettingsSharp size={20} />
+            Setting
+          </Link>
+        </div>
+        <div className="flex flex-col w-full">
+          <Link
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            to="/dashboard"
+          >
+            <FaPowerOff size={18} />
+            Logout
+          </Link>
+        </div>
       </div>
     </div>
   );

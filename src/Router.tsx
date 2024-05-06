@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import PasswordReset from "./pages/PasswordReset";
 import Register from "./pages/Registration";
 import Dashboard from "./pages/Dashboard.tsx";
+import Settings from "./pages/Settings.tsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+  },
+  {
+    path: "/settings",
+    element: <Settings />,
   },
   {
     path: "*",
