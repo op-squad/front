@@ -162,7 +162,7 @@ export default function Register() {
     }
 
     setIsLoading(false);
-    navigate("/email-verify");
+    navigate("/email-verification");
   }
 
   const togglePwdVisibility = () => {
@@ -375,12 +375,6 @@ export default function Register() {
               </Button>
             </form>
           </Form>
-          {/* <Button
-            variant="secondary"
-            className="font-Raleway mb-8 w-full"
-          >
-            Sign up with Google
-          </Button> */}
         </div>
       </div>
     </div>

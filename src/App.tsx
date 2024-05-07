@@ -34,16 +34,16 @@ export default function App() {
           path="password-reset"
           element={<PasswordReset />}
         ></Route>
+        <Route
+          path="email-verification"
+          element={<EmailVerification />}
+        ></Route>
 
         {/* We want to protect these routes */}
         <Route element={<RequireAuth />}>
           <Route
             path="dashboard"
             element={<Dashboard />}
-          ></Route>
-          <Route
-            path="email-verification"
-            element={<EmailVerification />}
           ></Route>
           <Route
             path="profile-details"
