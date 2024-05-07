@@ -1,5 +1,5 @@
 import Layout from "@components/Layout";
-import RequireAuth from "@components/RequireAuth";
+// import RequireAuth from "@components/RequireAuth";
 import Dashboard from "@pages/Dashboard";
 import EmailVerification from "@pages/EmailVerification";
 import Landing from "@pages/Landing";
@@ -40,16 +40,28 @@ export default function App() {
         ></Route>
 
         {/* We want to protect these routes */}
-        <Route element={<RequireAuth />}>
-          <Route
-            path="dashboard"
-            element={<Dashboard />}
-          ></Route>
-          <Route
-            path="profile-details"
-            element={<RegisterDetails />}
-          ></Route>
-        </Route>
+        {/* <Route element={<RequireAuth />}> */}
+        <Route
+          path="dashboard"
+          element={<Dashboard />}
+        ></Route>
+        <Route
+          path="profile-details"
+          element={<RegisterDetails />}
+        ></Route>
+        <Route
+          path="patients"
+          element={<NotFound />}
+        ></Route>
+        <Route
+          path="models"
+          element={<NotFound />}
+        ></Route>
+        <Route
+          path="calendar"
+          element={<NotFound />}
+        ></Route>
+        {/* </Route>  */}
 
         {/* catch all */}
         <Route
