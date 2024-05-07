@@ -2,7 +2,7 @@ import Nav from "./Nav";
 import { Link } from "react-router-dom";
 import { FaPowerOff } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
-import doctorImg from "/home/wb21/projects/op-squad/front/src/assets/profile/doctor.jpg";
+import doctorImg from "../../assets/profile/doctor.jpg";
 
 export default function Sidebar() {
   return (

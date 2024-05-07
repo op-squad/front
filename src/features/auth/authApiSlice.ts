@@ -36,9 +36,8 @@ export const authApiSlice = apiSlice.injectEndpoints({
     verify: builder.mutation({
       query: (body: { code: string }) => {
         return {
-          url: "/verify",
+          url: `/verify?code=${body.code}`,
           method: "POST",
-          body,
         };
       },
     }),

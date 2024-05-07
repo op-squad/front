@@ -18,6 +18,8 @@ export default function EmailVerification() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    console.log(code);
+
     await verify({
       code: code,
     })

@@ -120,6 +120,7 @@ export default function Register() {
             description: "Redirecting to verification page...",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
+          navigate("/email-verification");
         })
         .catch((err) => {
           toast({
@@ -147,10 +148,9 @@ export default function Register() {
             description: "Redirecting to email verification page...",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
+          navigate("/email-verification");
         })
         .catch((err) => {
-          console.log(err);
-
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
@@ -162,7 +162,6 @@ export default function Register() {
     }
 
     setIsLoading(false);
-    navigate("/email-verification");
   }
 
   const togglePwdVisibility = () => {
