@@ -8,34 +8,34 @@ export default function Nav() {
     <div className="flex flex-col items-center text-neutral-50 w-full">
       <div className="flex flex-col w-full">
         <Link
-          className="flex gap-4 items-center justify-left pl-20 py-5 2xl:py-7 text-sm 2xl:text-base text-center font-bold hover:bg-indigo-700"
+          className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
           to="/dashboard"
         >
-          <GoHomeFill size={24} />
+          <GoHomeFill size={20} />
           Dashboard
         </Link>
       </div>
       <div className="flex flex-col w-full">
         <Link
-          className="flex gap-4 items-center justify-left pl-20 py-5 2xl:py-7 text-sm 2xl:text-base text-center font-bold hover:bg-indigo-700"
+          className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
           to="/patients"
         >
-          <IoBandageSharp size={24} />
+          <IoBandageSharp size={20} />
           Patients
         </Link>
       </div>
       <div className="flex flex-col w-full">
         <Link
-          className="flex gap-4 items-center justify-left pl-20 py-5 2xl:py-7 text-sm 2xl:text-base text-center font-bold hover:bg-indigo-700"
+          className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
           to="/models"
         >
-          <FaRobot size={24} />
+          <FaRobot size={20} />
           Models
         </Link>
       </div>
       <div className="flex flex-col w-full">
         <Link
-          className="flex gap-4 items-center justify-left pl-20 py-5 2xl:py-7 text-sm 2xl:text-base text-center font-bold hover:bg-indigo-700"
+          className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
           to="/calendar"
         >
           <FaCalendarAlt size={20} />
