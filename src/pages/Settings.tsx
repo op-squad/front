@@ -10,7 +10,7 @@ export default function Settings() {
           <h1 className="text-4xl 2xl:text-5xl font-extrabold py-4 text-blue-950">
             Account & Settings
           </h1>
-          <div className="flex pl-4 gap-8 mt-6 mb-2 font-semibold">
+          <div className="flex pl-4 gap-12 mt-6 mb-2 font-semibold">
             <NavLink
               to="profile"
               className={({ isActive }) =>
@@ -39,7 +39,7 @@ export default function Settings() {
                   : "cursor-pointer text-gray-400"
               }
             >
-              Password
+              Change Password
             </NavLink>
           </div>
           <hr />

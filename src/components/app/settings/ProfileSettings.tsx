@@ -1,6 +1,12 @@
+import { useRef } from "react";
 import doctorImg from "/home/wb21/projects/op-squad/front/src/assets/profile/doctor.jpg";
 
+const chooseFile = (ref) => {
+  ref.current.click();
+};
+
 export default function ProfileSettings() {
+  const ref = useRef();
   return (
     <div className="flex flex-col gap-16 pl-4">
       <div className="flex flex-col gap-8">
@@ -12,7 +18,15 @@ export default function ProfileSettings() {
             className="w-48 aspect-square object-cover rounded-full"
           />
           <div className="flex flex-col gap-4">
-            <button className="bg-blue-600 text-blue-50 px-8 py-2 rounded-xl text-sm font-semibold">
+            <input
+              className="hidden"
+              type="file"
+              ref={ref}
+            />
+            <button
+              onClick={() => chooseFile(ref)}
+              className="bg-blue-600 text-blue-50 px-8 py-2 rounded-xl text-sm font-semibold"
+            >
               Change Picture
             </button>
             <button className="border-solid border-2 border-red-600 text-red-600 px-8 py-2 rounded-xl text-sm font-semibold">
