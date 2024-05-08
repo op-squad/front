@@ -10,7 +10,11 @@ export default function ProfileSettings() {
 
   const uploadImage = (files: FileList | null) => {
     if (files) {
-      setProfileImage(URL.createObjectURL(files[0]));
+      if (files[0].size <= 2097152) {
+        setProfileImage(URL.createObjectURL(files[0]));
+      } else {
+        alert("this is too big");
+      }
     }
   };
 
