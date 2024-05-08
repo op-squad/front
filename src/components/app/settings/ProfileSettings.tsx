@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import doctorImg from "/home/wb21/projects/op-squad/front/src/assets/profile/doctor.jpg";
 
 const chooseFile = (ref) => {
@@ -6,6 +6,14 @@ const chooseFile = (ref) => {
 };
 
 export default function ProfileSettings() {
+  const [profileImage, setProfileImage] = useState(doctorImg);
+
+  const uploadImage = (files: FileList | null) => {
+    if (files) {
+      setProfileImage(URL.createObjectURL(files[0]));
+    }
+  };
+
   const ref = useRef();
   return (
     <div className="flex flex-col gap-16 pl-4">
@@ -13,7 +21,7 @@ export default function ProfileSettings() {
         <h2 className="text-2xl 2xl:text-2xl font-bold">Profile Picture</h2>
         <div className="flex gap-24 items-center">
           <img
-            src={doctorImg}
+            src={profileImage}
             alt="doctor"
             className="w-48 aspect-square object-cover rounded-full"
           />
@@ -22,6 +30,7 @@ export default function ProfileSettings() {
               className="hidden"
               type="file"
               ref={ref}
+              onChange={(e) => uploadImage(e.target.files)}
             />
             <button
               onClick={() => chooseFile(ref)}
