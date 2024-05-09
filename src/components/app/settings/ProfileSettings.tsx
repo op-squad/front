@@ -1,12 +1,12 @@
-import { useRef } from "react";
-import doctorImg from "/home/wb21/projects/op-squad/front/src/assets/profile/doctor.jpg";
+import doctorImg from "@/assets/profile/doctor.jpg";
+import { RefObject, useRef } from "react";
 
-const chooseFile = (ref) => {
-  ref.current.click();
+const chooseFile = (ref: RefObject<HTMLInputElement>) => {
+  ref.current?.click();
 };
 
 export default function ProfileSettings() {
-  const ref = useRef();
+  const ref = useRef(null);
   return (
     <div className="flex flex-col gap-16 pl-4">
       <div className="flex flex-col gap-8">

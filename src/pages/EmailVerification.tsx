@@ -1,8 +1,8 @@
 // import ChangePasswordForm from "../components/ChangePasswordForm";
 
-import Button from "@components/ui/Button";
-import Input from "@components/ui/Input";
-import { useToast } from "@components/ui/use-toast";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { useToast } from "@/utils/use-toast";
 import { useRef, useState } from "react";
 import { useVerifyMutation } from "../features/auth/authApiSlice";
 import { Toaster } from "../utils/toaster";
