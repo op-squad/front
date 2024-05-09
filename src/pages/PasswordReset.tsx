@@ -7,7 +7,7 @@ import {
   usePwdForgotMutation,
   usePwdResetMutation,
 } from "../features/auth/authApiSlice";
-import { Toaster } from "../toaster";
+import { Toaster } from "../utils/toaster";
 
 export default function PasswordReset() {
   const [sent, setSent] = useState(false); // State to track if verification code was sent

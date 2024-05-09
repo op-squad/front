@@ -24,7 +24,7 @@ export default function Sidebar() {
       <div className="flex flex-col items-center text-neutral-50 w-full">
         <div className="flex flex-col w-full">
           <Link
-            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm text-center font-bold hover:bg-indigo-700"
             to="/settings"
           >
             <IoSettingsSharp size={20} />
@@ -33,7 +33,7 @@ export default function Sidebar() {
         </div>
         <div className="flex flex-col w-full">
           <Link
-            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm text-center font-bold hover:bg-indigo-700"
             to="/dashboard"
           >
             <FaPowerOff size={18} />

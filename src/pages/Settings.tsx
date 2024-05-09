@@ -1,5 +1,5 @@
-import { Outlet, NavLink } from "react-router-dom";
-import Sidebar from "../components/app/Sidebar";
+import { NavLink, Outlet } from "react-router-dom";
+import Sidebar from "@/components/app/Sidebar";
 
 export default function Settings() {
   return (

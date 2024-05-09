@@ -1,14 +1,14 @@
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { useToast } from "@/utils/use-toast";
+import { useLoginMutation } from "@/features/auth/authApiSlice";
+import { setCredentials } from "@/features/auth/authSlice";
+import { Toaster } from "@/utils/toaster";
+import { ToastAction } from "@radix-ui/react-toast";
 import React, { useEffect, useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../features/auth/authApiSlice";
-import { setCredentials } from "../features/auth/authSlice";
-import Button from "../components/ui/Button";
-import Input from "../components/ui/Input";
-import { useToast } from "@components/ui/use-toast";
-import { ToastAction } from "@radix-ui/react-toast";
-import { Toaster } from "../toaster";
 
 export default function Login() {
   const userRef = useRef<HTMLInputElement | null>(null);

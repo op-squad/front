@@ -1,18 +1,18 @@
-import Layout from "@components/Layout";
-import ContactSettings from "@components/app/settings/ContactSettings";
-import PasswordSettings from "@components/app/settings/PasswordSettings";
-import ProfileSettings from "@components/app/settings/ProfileSettings";
-// import RequireAuth from "@components/RequireAuth";
-import Dashboard from "@pages/Dashboard";
-import EmailVerification from "@pages/EmailVerification";
-import Landing from "@pages/Landing";
-import Login from "@pages/Login";
-import NotFound from "@pages/NotFound";
-import PasswordReset from "@pages/PasswordReset";
-import RegisterDetails from "@pages/RegisterDetails";
-import Register from "@pages/Registration";
-import Settings from "@pages/Settings";
-import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "@/components/Layout";
+import ContactSettings from "@/components/app/settings/ContactSettings";
+import PasswordSettings from "@/components/app/settings/PasswordSettings";
+import ProfileSettings from "@/components/app/settings/ProfileSettings";
+// import RequireAuth from "@/components/RequireAuth";
+import Dashboard from "@/pages/Dashboard";
+import EmailVerification from "@/pages/EmailVerification";
+import Landing from "@/pages/Landing";
+import Login from "@/pages/Login";
+import NotFound from "@/pages/NotFound";
+import PasswordReset from "@/pages/PasswordReset";
+import RegisterDetails from "@/pages/RegisterDetails";
+import Register from "@/pages/Registration";
+import Settings from "@/pages/Settings";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
@@ -23,7 +23,7 @@ export default function App() {
       >
         {/* Public routes  */}
         <Route
-          path="landing"
+          path="/"
           element={<Landing />}
         ></Route>
         <Route

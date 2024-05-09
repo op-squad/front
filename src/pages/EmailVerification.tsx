@@ -5,7 +5,7 @@ import Input from "@components/ui/Input";
 import { useToast } from "@components/ui/use-toast";
 import { useRef, useState } from "react";
 import { useVerifyMutation } from "../features/auth/authApiSlice";
-import { Toaster } from "../toaster";
+import { Toaster } from "../utils/toaster";
 import { ToastAction } from "@radix-ui/react-toast";
 
 export default function EmailVerification() {

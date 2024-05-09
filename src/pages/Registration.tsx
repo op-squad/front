@@ -1,16 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
-import Button from "@components/ui/Button";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Input from "@components/ui/Input";
-import { useNavigate } from "react-router-dom";
-import { LuAlertCircle } from "react-icons/lu";
-import { useToast } from "@components/ui/use-toast";
-import { ToastAction } from "@components/ui/Toast";
-import { Toaster } from "../toaster";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
+import { ToastAction } from "@/components/ui/Toast";
+import { useToast } from "@/utils/use-toast";
+import { Toaster } from "@/utils/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { LuAlertCircle } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 import {
   Form,
@@ -19,7 +19,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@components/ui/Form";
+} from "@/components/ui/Form";
 import {
   useAssistantRegisterMutation,
   useDoctorRegisterMutation,
