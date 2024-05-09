@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Button from "./ui/Button";
-import Input from "../components/ui/Input";
+import Input from "@/components/ui/Input";
 
 export default function ChangePasswordForm() {
   const emailRef = useRef<HTMLInputElement | null>(null);
