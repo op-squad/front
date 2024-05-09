@@ -17,11 +17,58 @@ export const patientApiSlice = apiSlice.injectEndpoints({
     getPatientByID: builder.query({
       query: (id: number) => {
         return {
-          url: `/patient/${id}`,
+          url: `/patient?id=${id}`,
+        };
+      },
+    }),
+
+    getPatients: builder.query({
+      query: () => {
+        return {
+          url: `/patients`,
+        };
+      },
+    }),
+
+    deletePatientByID: builder.mutation({
+      query: (id: number) => {
+        return {
+          url: `/patient?patientId=${id}`,
+          method: "DELETE",
+        };
+      },
+    }),
+
+    createPatient: builder.mutation({
+      query: (body: {
+        firstname: string;
+        lastname: string;
+        phonenumber: string;
+      }) => {
+        return {
+          url: "/patient",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+
+    delegatePatient: builder.mutation({
+      query: (body: { doctorName: string; patientID: number }) => {
+        return {
+          url: "/patient/delegate",
+          method: "POST",
+          body,
         };
       },
     }),
   }),
 });
 
-export const { useGetPatientByIDQuery } = patientApiSlice;
+export const {
+  useGetPatientByIDQuery,
+  useGetPatientsQuery,
+  useCreatePatientMutation,
+  useDelegatePatientMutation,
+  useDeletePatientByIDMutation,
+} = patientApiSlice;
