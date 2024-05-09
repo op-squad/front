@@ -12,9 +12,11 @@ import PasswordReset from "@pages/PasswordReset";
 import RegisterDetails from "@pages/RegisterDetails";
 import Register from "@pages/Registration";
 import Settings from "@pages/Settings";
+import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 export default function App() {
+  const [settingsEditState, setSettingsEditState] = useState(false);
   return (
     <Routes>
       <Route
@@ -67,7 +69,12 @@ export default function App() {
         ></Route>
         <Route
           path="settings"
-          element={<Settings />}
+          element={
+            <Settings
+              toggleEdit={settingsEditState}
+              setToggleEdit={setSettingsEditState}
+            />
+          }
         >
           <Route
             index
@@ -80,15 +87,15 @@ export default function App() {
           ></Route>
           <Route
             path="profile"
-            element={<ProfileSettings />}
+            element={<ProfileSettings editState={settingsEditState} />}
           ></Route>
           <Route
             path="contact"
-            element={<ContactSettings />}
+            element={<ContactSettings editState={settingsEditState} />}
           ></Route>
           <Route
             path="password"
-            element={<PasswordSettings />}
+            element={<PasswordSettings editState={settingsEditState} />}
           ></Route>
         </Route>
         {/* </Route>  */}

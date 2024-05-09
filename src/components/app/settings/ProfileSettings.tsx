@@ -5,7 +5,8 @@ const chooseFile = (ref) => {
   ref.current.click();
 };
 
-export default function ProfileSettings() {
+export default function ProfileSettings(editState) {
+  console.log(editState);
   const [profileImage, setProfileImage] = useState(doctorImg);
 
   const uploadImage = (files: FileList | null) => {
