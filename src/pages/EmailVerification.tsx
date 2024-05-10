@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { useVerifyMutation } from "../features/auth/authApiSlice";
 import { Toaster } from "../utils/toaster";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function EmailVerification() {
   const codeRef = useRef<HTMLInputElement | null>(null);
@@ -14,6 +15,7 @@ export default function EmailVerification() {
 
   const [verify, { isLoading }] = useVerifyMutation();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,9 +31,10 @@ export default function EmailVerification() {
 
         toast({
           title: "Your operation was successful",
-          description: "Redirecting to email verification page...",
+          description: "Redirecting to login page...",
           action: <ToastAction altText="Try again">Try again</ToastAction>,
         });
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);

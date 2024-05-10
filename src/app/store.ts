@@ -1,9 +1,9 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import authReducer from "@/features/auth/authSlice";
 import assistantReducer from "@/features/crud/assistant/assistantSlice";
 import doctorReducer from "@/features/crud/doctor/doctorSlice";
 import patientReducer from "@/features/crud/patient/patientSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice";
 
 // Combine reducers

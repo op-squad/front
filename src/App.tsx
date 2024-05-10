@@ -13,6 +13,7 @@ import RegisterDetails from "@/pages/RegisterDetails";
 import Register from "@/pages/Registration";
 import Settings from "@/pages/Settings";
 import { Navigate, Route, Routes } from "react-router-dom";
+import RequireAuth from "./components/RequireAuth";
 
 export default function App() {
   return (
@@ -44,54 +45,54 @@ export default function App() {
         ></Route>
 
         {/* We want to protect these routes */}
-        {/* <Route element={<RequireAuth />}> */}
-        <Route
-          path="dashboard"
-          element={<Dashboard />}
-        ></Route>
-        <Route
-          path="profile-details"
-          element={<RegisterDetails />}
-        ></Route>
-        <Route
-          path="patients"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="models"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="calendar"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="settings"
-          element={<Settings />}
-        >
+        <Route element={<RequireAuth />}>
           <Route
-            index
-            element={
-              <Navigate
-                to="profile"
-                replace
-              />
-            }
+            path="dashboard"
+            element={<Dashboard />}
           ></Route>
           <Route
-            path="profile"
-            element={<ProfileSettings />}
+            path="profile-details"
+            element={<RegisterDetails />}
           ></Route>
           <Route
-            path="contact"
-            element={<ContactSettings />}
+            path="patients"
+            element={<NotFound />}
           ></Route>
           <Route
-            path="password"
-            element={<PasswordSettings />}
+            path="models"
+            element={<NotFound />}
           ></Route>
+          <Route
+            path="calendar"
+            element={<NotFound />}
+          ></Route>
+          <Route
+            path="settings"
+            element={<Settings />}
+          >
+            <Route
+              index
+              element={
+                <Navigate
+                  to="profile"
+                  replace
+                />
+              }
+            ></Route>
+            <Route
+              path="profile"
+              element={<ProfileSettings />}
+            ></Route>
+            <Route
+              path="contact"
+              element={<ContactSettings />}
+            ></Route>
+            <Route
+              path="password"
+              element={<PasswordSettings />}
+            ></Route>
+          </Route>
         </Route>
-        {/* </Route>  */}
 
         {/* catch all */}
         <Route

@@ -24,6 +24,7 @@ import {
   useAssistantRegisterMutation,
   useDoctorRegisterMutation,
 } from "../features/auth/authApiSlice";
+import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -122,11 +123,11 @@ export default function Register() {
           });
           navigate("/email-verification");
         })
-        .catch((err) => {
+        .catch(() => {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: err.data.message,
+            description: "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;
@@ -140,9 +141,7 @@ export default function Register() {
         email: email,
       })
         .unwrap()
-        .then((result) => {
-          console.log(result);
-
+        .then(() => {
           toast({
             title: "Your operation was successful",
             description: "Redirecting to email verification page...",
@@ -150,11 +149,11 @@ export default function Register() {
           });
           navigate("/email-verification");
         })
-        .catch((err) => {
+        .catch(() => {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: err.data.message,
+            description: "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;
@@ -187,7 +186,10 @@ export default function Register() {
             </p>
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="mb-6"
+            >
               <div className="mb-4">
                 <label
                   htmlFor="username"
@@ -374,6 +376,16 @@ export default function Register() {
               </Button>
             </form>
           </Form>
+
+          <p className="text-xs font-light text-primary opacity-60">
+            You already have an account?&nbsp;&nbsp;
+            <Link
+              to="/login"
+              className="underline  text-blue-custom hover:text-blue-950 font-semibold"
+            >
+              Log in
+            </Link>
+          </p>
         </div>
       </div>
     </div>

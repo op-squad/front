@@ -16,7 +16,7 @@ export default function Button({ className, variant, ...props }: ButtonProps) {
 }
 
 const buttonVariants = cva(
-  "py-[9px] px-12 text-sm font-bold rounded-md hover:opacity-80",
+  "py-[12px] px-12 text-lg font-bold rounded-md hover:opacity-80",
   {
     variants: {
       variant: {
