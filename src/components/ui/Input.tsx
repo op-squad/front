@@ -1,4 +1,4 @@
-import { cn } from "../../utils/cn";
+import { cn } from "@/utils/cn";
 import React from "react";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -11,7 +11,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <input
         ref={ref}
         className={cn(
-          "mt-[6px] p-2 bg-gray-200  block w-full rounded-md border-gray-400 border-[1px] placeholder:text-xs",
+          "mt-[6px] p-4 bg-gray-200 block w-full rounded-md border-gray-400 border-[1px]",
           className,
         )}
         {...props}

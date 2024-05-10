@@ -1,14 +1,13 @@
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { useLoginMutation } from "@/features/auth/authApiSlice";
+import { setCredentials } from "@/features/auth/authSlice";
+import { useToast } from "@/utils/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 import React, { useEffect, useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useLoginMutation } from "../features/auth/authApiSlice";
-import { setCredentials } from "../features/auth/authSlice";
-import Button from "../components/ui/Button";
-import Input from "../components/ui/Input";
-import { useToast } from "@components/ui/use-toast";
-import { ToastAction } from "@radix-ui/react-toast";
-import { Toaster } from "../toaster";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const userRef = useRef<HTMLInputElement | null>(null);
@@ -36,18 +35,24 @@ export default function Login() {
     e.preventDefault();
 
     await login({
-      username: user,
+      username: "belloumi",
       password: pwd,
       email: user,
     })
       .unwrap()
-      .then((token) => {
-        dispatch(setCredentials({ user: user, token: token.accessToken }));
+      .then((result) => {
+        console.log(result.accessToken);
 
+        dispatch(setCredentials({ user: user, token: result.accessToken }));
+        toast({
+          title: "Your operation was successful",
+          description: "Redirecting to dashboard...",
+          // action: <ToastAction altText="Try again">Try again</ToastAction>,
+        });
         setUser("");
         setPwd("");
 
-        navigate("/dashboard");
+        navigate("/dashboard", { replace: true });
       })
       .catch((err) => {
         toast({
@@ -71,7 +76,6 @@ export default function Login() {
 
   return (
     <div className="flex  bg-gray-50 h-dvh ">
-      <Toaster />
       <div className="bg-gray-50 flex items-center h-full flex-grow ">
         <div className="w-7/12  m-auto my-16 ">
           {errMsg && (
@@ -80,10 +84,10 @@ export default function Login() {
             </div>
           )}
           <div className="mb-12">
-            <p className="font-extrabold text-primary font-Raleway mb-4 text-4xl">
+            <p className="font-extrabold text-primary font-Raleway mb-6 text-6xl">
               Login
             </p>
-            <p className="text-sm font-light font-Raleway text-primary opacity-60">
+            <p className="text-lg font-light font-Raleway text-primary opacity-60">
               Welcome back Doc! Let's log you in.
             </p>
           </div>
@@ -94,9 +98,9 @@ export default function Login() {
             <div className="mb-4">
               <label
                 htmlFor="username"
-                className="block text-xs font-light"
+                className="block text-lg font-light"
               >
-                Username
+                Email
               </label>
               <Input
                 label="Username"
@@ -108,10 +112,10 @@ export default function Login() {
                 required
               ></Input>
             </div>
-            <div className="mb-4">
+            <div className="mb-6">
               <label
                 htmlFor="password"
-                className="block text-xs font-light"
+                className="block text-lg font-light"
               >
                 Password
               </label>
@@ -127,24 +131,24 @@ export default function Login() {
 
                 {pwdVisible ? (
                   <FaEye
-                    size="1.25rem"
+                    size="1.5rem"
                     onClick={togglePwdVisibility}
-                    className="absolute text-gray-700 right-4 top-[11px]"
+                    className="absolute text-gray-700 right-5 top-[16px]"
                   />
                 ) : (
                   <FaEyeSlash
-                    size="1.25rem"
+                    size="1.5rem"
                     onClick={togglePwdVisibility}
-                    className="absolute right-4 text-gray-700 top-[11px] "
+                    className="absolute right-5 text-gray-700 top-[16px] "
                   />
                 )}
               </div>
-              <label
-                htmlFor="password"
-                className="block mb-4 text-[11px] underline text-gray-400"
+              <Link
+                to="/password-reset"
+                className="block mb-4 text-[16px] hover:text-gray-500 underline text-gray-400"
               >
-                Can't log in?
-              </label>
+                Forgot passowrd?
+              </Link>
             </div>
             <Button
               variant="primary"
@@ -153,17 +157,14 @@ export default function Login() {
               {isLoading ? `Loading...` : `Login`}
             </Button>
           </form>
-          <Button
-            variant="secondary"
-            className="font-Raleway mb-8 w-full"
-          >
-            Log in with Google
-          </Button>
-          <p className="text-xs font-light text-primary opacity-60">
+          <p className="text-lg font-light text-primary opacity-60">
             You don't have an account?&nbsp;&nbsp;
-            <span className="underline  text-blue-custom font-semibold">
+            <Link
+              to="/register"
+              className="underline  text-blue-custom hover:text-blue-950 font-semibold"
+            >
               Sign up
-            </span>
+            </Link>
           </p>
         </div>
       </div>

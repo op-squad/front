@@ -1,10 +1,19 @@
 import Nav from "./Nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPowerOff } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
-import doctorImg from "../../assets/profile/doctor.jpg";
+import doctorImg from "@/assets/profile/doctor.jpg";
+import { logOut } from "@/features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
+    navigate("/login", { replace: true });
+  };
   return (
     <div className="flex flex-col items-center bg-indigo-600 text-neutral-50 w-72 2xl:w-80 h-screen justify-between py-16">
       <div className="flex flex-col items-center">
@@ -24,7 +33,7 @@ export default function Sidebar() {
       <div className="flex flex-col items-center text-neutral-50 w-full">
         <div className="flex flex-col w-full">
           <Link
-            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm text-center font-bold hover:bg-indigo-700"
             to="/settings"
           >
             <IoSettingsSharp size={20} />
@@ -32,13 +41,13 @@ export default function Sidebar() {
           </Link>
         </div>
         <div className="flex flex-col w-full">
-          <Link
-            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm 2xl:text-sm text-center font-bold hover:bg-indigo-700"
-            to="/dashboard"
+          <button
+            className="flex gap-4 items-center justify-left pl-16 2xl:pl-20 py-5 2xl:py-4 text-xs 2xl:text-sm text-center font-bold hover:bg-indigo-700"
+            onClick={handleLogout}
           >
             <FaPowerOff size={18} />
             Logout
-          </Link>
+          </button>
         </div>
       </div>
     </div>

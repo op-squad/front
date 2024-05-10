@@ -1,4 +1,4 @@
-import { apiSlice } from "../../app/api/apiSlice";
+import { apiSlice } from "@/app/api/apiSlice";
 
 /*
  * Any endpoint definitions defined using that builder will be merged into the existing * endpoint definitions for this API slice

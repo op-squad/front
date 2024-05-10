@@ -1,16 +1,16 @@
-import { useState, useRef, useEffect } from "react";
-import { RadioGroup, RadioGroupItem } from "@components/ui/RadioGroup";
-import Button from "@components/ui/Button";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import Input from "@components/ui/Input";
-import { useNavigate } from "react-router-dom";
-import { LuAlertCircle } from "react-icons/lu";
-import { useToast } from "@components/ui/use-toast";
-import { ToastAction } from "@components/ui/Toast";
-import { Toaster } from "../toaster";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
+import { ToastAction } from "@/components/ui/Toast";
+import { useToast } from "@/utils/use-toast";
+import { Toaster } from "@/utils/toaster";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { LuAlertCircle } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
+import { z } from "zod";
 
 import {
   Form,
@@ -19,11 +19,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@components/ui/Form";
+} from "@/components/ui/Form";
 import {
   useAssistantRegisterMutation,
   useDoctorRegisterMutation,
 } from "../features/auth/authApiSlice";
+import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -123,10 +124,12 @@ export default function Register() {
           navigate("/email-verification");
         })
         .catch((err) => {
+          console.log(err);
+
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: err.data.message,
+            description: "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;
@@ -140,9 +143,7 @@ export default function Register() {
         email: email,
       })
         .unwrap()
-        .then((result) => {
-          console.log(result);
-
+        .then(() => {
           toast({
             title: "Your operation was successful",
             description: "Redirecting to email verification page...",
@@ -151,10 +152,12 @@ export default function Register() {
           navigate("/email-verification");
         })
         .catch((err) => {
+          console.log(err);
+
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: err.data.message,
+            description: "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;
@@ -182,16 +185,19 @@ export default function Register() {
       <div className="bg-gray-100 flex outline-4 outline-red-700 flex-grow ">
         <div className="w-7/12  m-auto">
           <div className="mb-8">
-            <p className="font-extrabold text-primary font-Raleway mb-4 text-4xl">
+            <p className="font-extrabold text-primary font-Raleway mb-6 text-6xl">
               Sign Up
             </p>
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="mb-6"
+            >
               <div className="mb-4">
                 <label
                   htmlFor="username"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Username
                   <p
@@ -219,7 +225,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Email
                   <p
@@ -246,7 +252,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Password
                   <p
@@ -272,15 +278,15 @@ export default function Register() {
 
                   {pwdVisible ? (
                     <FaEye
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute text-gray-700 right-4 top-[11px]"
+                      className="absolute text-gray-700 right-5 top-[16px]"
                     />
                   ) : (
                     <FaEyeSlash
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute right-4 text-gray-700 top-[11px] "
+                      className="absolute right-5 text-gray-700 top-[16px] "
                     />
                   )}
                 </div>
@@ -288,7 +294,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="confirm-password"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Confirm Password
                   <p
@@ -314,15 +320,15 @@ export default function Register() {
 
                   {pwdVisible ? (
                     <FaEye
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute text-gray-700 right-4 top-[11px]"
+                      className="absolute text-gray-700 right-5 top-[16px]"
                     />
                   ) : (
                     <FaEyeSlash
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute right-4 text-gray-700 top-[11px] "
+                      className="absolute right-5 text-gray-700 top-[16px] "
                     />
                   )}
                 </div>
@@ -345,14 +351,14 @@ export default function Register() {
                           <FormControl>
                             <RadioGroupItem value="assistant" />
                           </FormControl>
-                          <FormLabel>Assistant</FormLabel>
+                          <FormLabel className="text-lg">Assistant</FormLabel>
                         </FormItem>
 
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="doctor" />
                           </FormControl>
-                          <FormLabel>Doctor</FormLabel>
+                          <FormLabel className="text-lg">Doctor</FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
@@ -374,6 +380,16 @@ export default function Register() {
               </Button>
             </form>
           </Form>
+
+          <p className="text-lg font-light text-primary opacity-60">
+            You already have an account?&nbsp;&nbsp;
+            <Link
+              to="/login"
+              className="underline  text-blue-custom hover:text-blue-950 font-semibold"
+            >
+              Log in
+            </Link>
+          </p>
         </div>
       </div>
     </div>
