@@ -6,7 +6,7 @@ interface doctorInfo {
   gender: "MALE" | "FEMALE"; // Assuming gender can be one of these options
   address: string;
   phoneNumber: string;
-  speciality: string;
+  specialty: string;
   birthDate: string; // Assuming birthDate is always in the format "YYYY-MM-DD"
 }
 

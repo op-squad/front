@@ -26,7 +26,7 @@ export default function Dashboard() {
                   circleColor: "bg-blue-50",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/1@vg",
+                  src: "src/assets/stat-cards/1.svg",
                   alt: "bandage",
                 }}
               />
@@ -41,7 +41,7 @@ export default function Dashboard() {
                   circleColor: "bg-blue-50",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/2@vg",
+                  src: "src/assets/stat-cards/2.svg",
                   alt: "diagnosis",
                 }}
               />
@@ -56,7 +56,7 @@ export default function Dashboard() {
                   circleColor: "bg-indigo-200",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/3@vg",
+                  src: "src/assets/stat-cards/3.svg",
                   alt: "robot",
                 }}
               />

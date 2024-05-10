@@ -35,7 +35,7 @@ export default function Login() {
     e.preventDefault();
 
     await login({
-      username: "chikoulaMina",
+      username: "belloumi",
       password: pwd,
       email: user,
     })
