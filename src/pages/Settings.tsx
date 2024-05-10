@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Sidebar from "@/components/app/Sidebar";
 
-export default function Settings() {
+export default function Settings({ context, actions }) {
+  const { state, dispatch } = context;
   return (
     <div className="flex overflow-hidden h-screen bg-blue-50">
       <Sidebar />
@@ -46,9 +47,22 @@ export default function Settings() {
           <div className="w-[800px] my-16">
             <Outlet />
           </div>
-          <button className="self-end bg-blue-600 text-blue-50 px-8 py-2 rounded-md text-lg font-semibold">
-            Save
-          </button>
+          {state.editMode && (
+            <div className="flex gap-4 self-end">
+              <button
+                className="border-2 border-red-600 text-red-600 px-8 py-2 rounded-md text-lg font-semibold"
+                onClick={() => dispatch({ type: actions.DISCARD_CHANGES })}
+              >
+                Discard
+              </button>
+              <button
+                className="bg-blue-600 text-blue-50 px-8 py-2 rounded-md text-lg font-semibold"
+                onClick={() => dispatch({ type: actions.SAVE_SETTINGS })}
+              >
+                Save
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { useRef } from "react";
+// import doctorProfile from "../../../assets/profile/doctorProfile";
 import doctorImg from "@/assets/profile/doctor.jpg";
 import Input from "@/components/ui/Input";
 import { RefObject, useRef } from "react";
@@ -6,7 +8,22 @@ const chooseFile = (ref: RefObject<HTMLInputElement>) => {
   ref.current?.click();
 };
 
-export default function ProfileSettings() {
+export default function ProfileSettings({ context, actions }) {
+  const { state, dispatch } = context;
+  const handleUpdateSettings = (key, value) => {
+    dispatch({ type: actions.UPDATE_SETTING, payload: { key, value } });
+  };
+
+  const uploadImage = (files: FileList | null) => {
+    if (files) {
+      if (files[0].size <= 2097152) {
+        handleUpdateSettings("profilePicture", URL.createObjectURL(files[0]));
+      } else {
+        alert("this is too big");
+      }
+    }
+  };
+
   const ref = useRef(null);
   return (
     <div className="flex flex-col gap-16 pl-4">
@@ -14,7 +31,12 @@ export default function ProfileSettings() {
         <h2 className="text-2xl 2xl:text-2xl font-bold">Profile Picture</h2>
         <div className="flex gap-24 items-center">
           <img
-            src={doctorImg}
+            src={
+              state.editMode
+                ? state.unsavedChanges.profilePicture ||
+                  state.profileSettings.profilePicture
+                : state.profileSettings.profilePicture
+            }
             alt="doctor"
             className="w-48 aspect-square border-2 border-primary border-opacity-30 object-cover rounded-full"
           />
@@ -23,6 +45,7 @@ export default function ProfileSettings() {
               className="hidden"
               type="file"
               ref={ref}
+              onChange={(e) => console.log(uploadImage(e.target.files))}
             ></Input>
             <button
               onClick={() => chooseFile(ref)}
@@ -50,6 +73,15 @@ export default function ProfileSettings() {
               className="rounded-lg h-10 border-solid border-2 px-4 w-max"
               type="text"
               id="family-name"
+              value={
+                state.editMode
+                  ? state.unsavedChanges.familyName ||
+                    state.profileSettings.familyName
+                  : state.profileSettings.familyName
+              }
+              onChange={(e) => {
+                handleUpdateSettings("familyName", e.target.value);
+              }}
             ></Input>
           </div>
           <div className="flex flex-col mb-2 gap-0">
@@ -63,6 +95,15 @@ export default function ProfileSettings() {
               className="rounded-lg h-10 border-solid border-2 px-4 w-max"
               type="text"
               id="first-name"
+              value={
+                state.editMode
+                  ? state.unsavedChanges.firstName ||
+                    state.profileSettings.firstName
+                  : state.profileSettings.firstName
+              }
+              onChange={(e) => {
+                handleUpdateSettings("firstName", e.target.value);
+              }}
             />
           </div>
           <div className="flex flex-col gap-2">

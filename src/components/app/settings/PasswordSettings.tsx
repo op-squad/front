@@ -1,6 +1,8 @@
+
 import Input from "@/components/ui/Input";
 
-export default function PasswordSettings() {
+export default function PasswordSettings(toggleEdit) {
+  console.log(toggleEdit);
   return (
     <div className="flex flex-col gap-8">
       <h2 className="text-2xl 2xl:text-2xl font-bold">Contact Info</h2>
@@ -13,7 +15,7 @@ export default function PasswordSettings() {
             Password
           </label>
           <Input
-            className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+            className="rounded-md h-10 border-solid border-2 px-4 w-max"
             type="password"
             id="password"
           ></Input>
@@ -26,7 +28,7 @@ export default function PasswordSettings() {
             Confirm Password
           </label>
           <Input
-            className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+            className="rounded-md h-10 border-solid border-2 px-4 w-max"
             type="password"
             id="confirm"
           ></Input>

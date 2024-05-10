@@ -2,6 +2,7 @@ import Nav from "./Nav";
 import { Link, useNavigate } from "react-router-dom";
 import { FaPowerOff } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
+import doctorProfile from "@/assets/profile/doctorProfile";
 import doctorImg from "@/assets/profile/doctor.jpg";
 import { logOut } from "@/features/auth/authSlice";
 import { useDispatch } from "react-redux";
@@ -18,7 +19,7 @@ export default function Sidebar() {
     <div className="flex flex-col items-center bg-indigo-600 text-neutral-50 w-72 2xl:w-80 h-screen justify-between py-16">
       <div className="flex flex-col items-center">
         <img
-          src={doctorImg}
+          src={doctorProfile.profilePicture}
           alt="doctor"
           className="w-2/5 aspect-square object-cover rounded-full"
         />

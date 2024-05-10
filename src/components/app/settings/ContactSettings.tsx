@@ -1,6 +1,7 @@
 import Input from "@/components/ui/Input";
 
-export default function ContactSettings() {
+export default function ContactSettings({ toggleEdit }) {
+  console.log(toggleEdit);
   return (
     <div className="flex flex-col gap-8">
       <h2 className="text-2xl 2xl:text-2xl font-bold">Contact Info</h2>
@@ -13,7 +14,7 @@ export default function ContactSettings() {
             Phone Number
           </label>
           <Input
-            className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+            className="rounded-md h-10 border-solid border-2 px-4 w-max"
             type="tel"
             id="phone-number"
           ></Input>
@@ -26,7 +27,7 @@ export default function ContactSettings() {
             Address
           </label>
           <Input
-            className="rounded-lg h-10 border-solid border-2 px-4 w-96"
+            className="rounded-md h-10 border-solid border-2 px-4 w-96"
             type="text"
             id="address"
           ></Input>
