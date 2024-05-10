@@ -123,7 +123,9 @@ export default function Register() {
           });
           navigate("/email-verification");
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
+
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
@@ -149,7 +151,9 @@ export default function Register() {
           });
           navigate("/email-verification");
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err);
+
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
@@ -181,7 +185,7 @@ export default function Register() {
       <div className="bg-gray-100 flex outline-4 outline-red-700 flex-grow ">
         <div className="w-7/12  m-auto">
           <div className="mb-8">
-            <p className="font-extrabold text-primary font-Raleway mb-4 text-4xl">
+            <p className="font-extrabold text-primary font-Raleway mb-6 text-6xl">
               Sign Up
             </p>
           </div>
@@ -193,7 +197,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="username"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Username
                   <p
@@ -221,7 +225,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="email"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Email
                   <p
@@ -248,7 +252,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="password"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Password
                   <p
@@ -274,15 +278,15 @@ export default function Register() {
 
                   {pwdVisible ? (
                     <FaEye
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute text-gray-700 right-4 top-[11px]"
+                      className="absolute text-gray-700 right-5 top-[16px]"
                     />
                   ) : (
                     <FaEyeSlash
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute right-4 text-gray-700 top-[11px] "
+                      className="absolute right-5 text-gray-700 top-[16px] "
                     />
                   )}
                 </div>
@@ -290,7 +294,7 @@ export default function Register() {
               <div className="mb-4">
                 <label
                   htmlFor="confirm-password"
-                  className="flex justify-between text-xs font-light"
+                  className="flex justify-between text-lg font-light"
                 >
                   Confirm Password
                   <p
@@ -316,15 +320,15 @@ export default function Register() {
 
                   {pwdVisible ? (
                     <FaEye
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute text-gray-700 right-4 top-[11px]"
+                      className="absolute text-gray-700 right-5 top-[16px]"
                     />
                   ) : (
                     <FaEyeSlash
-                      size="1.25rem"
+                      size="1.5rem"
                       onClick={togglePwdVisibility}
-                      className="absolute right-4 text-gray-700 top-[11px] "
+                      className="absolute right-5 text-gray-700 top-[16px] "
                     />
                   )}
                 </div>
@@ -347,14 +351,14 @@ export default function Register() {
                           <FormControl>
                             <RadioGroupItem value="assistant" />
                           </FormControl>
-                          <FormLabel>Assistant</FormLabel>
+                          <FormLabel className="text-lg">Assistant</FormLabel>
                         </FormItem>
 
                         <FormItem className="flex items-center space-x-3 space-y-0">
                           <FormControl>
                             <RadioGroupItem value="doctor" />
                           </FormControl>
-                          <FormLabel>Doctor</FormLabel>
+                          <FormLabel className="text-lg">Doctor</FormLabel>
                         </FormItem>
                       </RadioGroup>
                     </FormControl>
@@ -377,7 +381,7 @@ export default function Register() {
             </form>
           </Form>
 
-          <p className="text-xs font-light text-primary opacity-60">
+          <p className="text-lg font-light text-primary opacity-60">
             You already have an account?&nbsp;&nbsp;
             <Link
               to="/login"

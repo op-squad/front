@@ -14,6 +14,7 @@ import Register from "@/pages/Registration";
 import Settings from "@/pages/Settings";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
+import RequireUnAuth from "./components/RequireUnauth";
 
 export default function App() {
   return (
@@ -23,26 +24,28 @@ export default function App() {
         element={<Layout />}
       >
         {/* Public routes  */}
-        <Route
-          path="/"
-          element={<Landing />}
-        ></Route>
-        <Route
-          path="login"
-          element={<Login />}
-        ></Route>
-        <Route
-          path="register"
-          element={<Register />}
-        ></Route>
-        <Route
-          path="password-reset"
-          element={<PasswordReset />}
-        ></Route>
-        <Route
-          path="email-verification"
-          element={<EmailVerification />}
-        ></Route>
+        <Route element={<RequireUnAuth />}>
+          <Route
+            path="/"
+            element={<Landing />}
+          ></Route>
+          <Route
+            path="login"
+            element={<Login />}
+          ></Route>
+          <Route
+            path="register"
+            element={<Register />}
+          ></Route>
+          <Route
+            path="password-reset"
+            element={<PasswordReset />}
+          ></Route>
+          <Route
+            path="email-verification"
+            element={<EmailVerification />}
+          ></Route>
+        </Route>
 
         {/* We want to protect these routes */}
         <Route element={<RequireAuth />}>

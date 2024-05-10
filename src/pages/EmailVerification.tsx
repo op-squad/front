@@ -5,7 +5,6 @@ import Input from "@/components/ui/Input";
 import { useToast } from "@/utils/use-toast";
 import { useRef, useState } from "react";
 import { useVerifyMutation } from "../features/auth/authApiSlice";
-import { Toaster } from "../utils/toaster";
 import { ToastAction } from "@radix-ui/react-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -53,13 +52,12 @@ export default function EmailVerification() {
       {/* <div className="absolute top-16 text-gray-600 left-24">
         <p>{"←"}&nbsp;&nbsp; back to login page</p>
       </div> */}
-      <Toaster />
       <div className="flex h-fit outline-2 outline-red-500 flex-col items-center gap-4">
-        <p className="font-extrabold text-primary font-Raleway text-4xl">
+        <p className="font-extrabold text-primary font-Raleway text-6xl">
           We Sent You A Verification Code
         </p>
-        <p className="text-sm font-light font-Raleway mb-8 text-primary opacity-60">
-          Check your email.
+        <p className="text-lg font-light font-Raleway mb-8 text-primary opacity-60">
+          Please check your email.
         </p>
         <form
           className="w-7/12"
@@ -68,7 +66,7 @@ export default function EmailVerification() {
           <div className="mb-8">
             <label
               htmlFor="code"
-              className="block text-xs font-light"
+              className="block text-lg font-light"
             >
               Verification Code
             </label>

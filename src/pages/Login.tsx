@@ -35,7 +35,7 @@ export default function Login() {
     e.preventDefault();
 
     await login({
-      username: "uuTeam",
+      username: "chikoulaMina",
       password: pwd,
       email: user,
     })
@@ -52,7 +52,7 @@ export default function Login() {
         setUser("");
         setPwd("");
 
-        navigate("/dashboard");
+        navigate("/dashboard", { replace: true });
       })
       .catch((err) => {
         toast({
