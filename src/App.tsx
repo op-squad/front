@@ -12,11 +12,55 @@ import PasswordReset from "@pages/PasswordReset";
 import RegisterDetails from "@pages/RegisterDetails";
 import Register from "@pages/Registration";
 import Settings from "@pages/Settings";
-import { useState } from "react";
+import { useReducer } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import doctorProfile from "@assets/profile/doctorProfile";
+
+const actionTypes = {
+  ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
+  DISCARD_CHANGES: "DISCARD_SETTINGS",
+  SAVE_SETTINGS: "SAVE_SETTINGS",
+  UPDATE_SETTING: "UPDATE_SETTING",
+};
+
+const initialState = {
+  profileSettings: { ...doctorProfile },
+  editMode: false,
+  unsavedChanges: {},
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case actionTypes.DISCARD_CHANGES:
+      return {
+        ...state,
+        editMode: false,
+        unsavedChanges: {},
+      };
+    case actionTypes.SAVE_SETTINGS:
+      return {
+        ...state,
+        editMode: false,
+        profileSettings: { ...state.profileSettings, ...state.unsavedChanges },
+        unsavedChanges: {},
+      };
+    case actionTypes.UPDATE_SETTING:
+      return {
+        ...state,
+        editMode: true,
+        unsavedChanges: {
+          ...state.unsavedChanges,
+          [action.payload.key]: action.payload.value,
+        },
+      };
+    default:
+      return state;
+  }
+};
 
 export default function App() {
-  const [settingsEditState, setSettingsEditState] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const context = { state, dispatch };
   return (
     <Routes>
       <Route
@@ -71,8 +115,8 @@ export default function App() {
           path="settings"
           element={
             <Settings
-              toggleEdit={settingsEditState}
-              setToggleEdit={setSettingsEditState}
+              context={context}
+              actions={actionTypes}
             />
           }
         >
@@ -87,15 +131,20 @@ export default function App() {
           ></Route>
           <Route
             path="profile"
-            element={<ProfileSettings editState={settingsEditState} />}
+            element={
+              <ProfileSettings
+                context={context}
+                actions={actionTypes}
+              />
+            }
           ></Route>
           <Route
             path="contact"
-            element={<ContactSettings editState={settingsEditState} />}
+            element={<ContactSettings toggleEdit={state} />}
           ></Route>
           <Route
             path="password"
-            element={<PasswordSettings editState={settingsEditState} />}
+            element={<PasswordSettings toggleEdit={state} />}
           ></Route>
         </Route>
         {/* </Route>  */}

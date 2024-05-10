@@ -1,5 +1,5 @@
-export default function ContactSettings({ editState }) {
-  console.log(editState);
+export default function ContactSettings({ toggleEdit }) {
+  console.log(toggleEdit);
   return (
     <div className="flex flex-col gap-4">
       <h2 className="text-2xl 2xl:text-2xl font-bold">Contact Info</h2>

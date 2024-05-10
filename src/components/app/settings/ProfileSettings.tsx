@@ -1,18 +1,20 @@
-import { useRef, useState } from "react";
-import doctorImg from "/home/wb21/projects/op-squad/front/src/assets/profile/doctor.jpg";
+import { useRef } from "react";
+// import doctorProfile from "../../../assets/profile/doctorProfile";
 
 const chooseFile = (ref) => {
   ref.current.click();
 };
 
-export default function ProfileSettings(editState) {
-  console.log(editState);
-  const [profileImage, setProfileImage] = useState(doctorImg);
+export default function ProfileSettings({ context, actions }) {
+  const { state, dispatch } = context;
+  const handleUpdateSettings = (key, value) => {
+    dispatch({ type: actions.UPDATE_SETTING, payload: { key, value } });
+  };
 
   const uploadImage = (files: FileList | null) => {
     if (files) {
       if (files[0].size <= 2097152) {
-        setProfileImage(URL.createObjectURL(files[0]));
+        handleUpdateSettings("profilePicture", URL.createObjectURL(files[0]));
       } else {
         alert("this is too big");
       }
@@ -26,7 +28,12 @@ export default function ProfileSettings(editState) {
         <h2 className="text-2xl 2xl:text-2xl font-bold">Profile Picture</h2>
         <div className="flex gap-24 items-center">
           <img
-            src={profileImage}
+            src={
+              state.editMode
+                ? state.unsavedChanges.profilePicture ||
+                  state.profileSettings.profilePicture
+                : state.profileSettings.profilePicture
+            }
             alt="doctor"
             className="w-48 aspect-square object-cover rounded-full"
           />
@@ -35,7 +42,7 @@ export default function ProfileSettings(editState) {
               className="hidden"
               type="file"
               ref={ref}
-              onChange={(e) => uploadImage(e.target.files)}
+              onChange={(e) => console.log(uploadImage(e.target.files))}
             />
             <button
               onClick={() => chooseFile(ref)}
@@ -58,6 +65,15 @@ export default function ProfileSettings(editState) {
               className="rounded-lg h-10 border-solid border-2 px-4 w-max"
               type="text"
               id="family-name"
+              value={
+                state.editMode
+                  ? state.unsavedChanges.familyName ||
+                    state.profileSettings.familyName
+                  : state.profileSettings.familyName
+              }
+              onChange={(e) => {
+                handleUpdateSettings("familyName", e.target.value);
+              }}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -66,6 +82,15 @@ export default function ProfileSettings(editState) {
               className="rounded-lg h-10 border-solid border-2 px-4 w-max"
               type="text"
               id="first-name"
+              value={
+                state.editMode
+                  ? state.unsavedChanges.firstName ||
+                    state.profileSettings.firstName
+                  : state.profileSettings.firstName
+              }
+              onChange={(e) => {
+                handleUpdateSettings("firstName", e.target.value);
+              }}
             />
           </div>
           <div className="flex flex-col gap-2">
