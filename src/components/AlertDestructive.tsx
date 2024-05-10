@@ -1,6 +1,6 @@
 import { LuAlertCircle } from "react-icons/lu";
 
-import { Alert, AlertDescription, AlertTitle } from "@components/ui/Alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/Alert";
 
 interface AlertDestructiveProps {
   title: string;

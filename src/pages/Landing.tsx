@@ -1,5 +1,5 @@
-import Feature from "../components/Feature";
-import NavBar from "../components/NavBar";
+import Feature from "@/components/Feature";
+import NavBar from "@/components/NavBar";
 
 function Landing() {
   return (

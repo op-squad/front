@@ -1,8 +1,8 @@
-import Sidebar from "../components/app/Sidebar";
-import StatCard from "../components/app/dashboard/StatCard";
-import ScheduleCard from "../components/app/dashboard/ScheduleCard/ScheduleCard";
-import Visits from "../components/app/dashboard/Visits/Visits";
-import PatientListCard from "../components/app/dashboard/PatientList/PatientListCard";
+import Sidebar from "@/components/app/Sidebar";
+import StatCard from "@/components/app/dashboard/StatCard";
+import ScheduleCard from "@/components/app/dashboard/ScheduleCard/ScheduleCard";
+import Visits from "@/components/app/dashboard/Visits/Visits";
+import PatientListCard from "@/components/app/dashboard/PatientList/PatientListCard";
 
 export default function Dashboard() {
   return (
@@ -26,7 +26,7 @@ export default function Dashboard() {
                   circleColor: "bg-blue-50",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/1.svg",
+                  src: "src/assets/stat-cards/1.svg",
                   alt: "bandage",
                 }}
               />
@@ -41,7 +41,7 @@ export default function Dashboard() {
                   circleColor: "bg-blue-50",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/2.svg",
+                  src: "src/assets/stat-cards/2.svg",
                   alt: "diagnosis",
                 }}
               />
@@ -56,7 +56,7 @@ export default function Dashboard() {
                   circleColor: "bg-indigo-200",
                 }}
                 icon={{
-                  src: "src/assets/stat_cards/3.svg",
+                  src: "src/assets/stat-cards/3.svg",
                   alt: "robot",
                 }}
               />

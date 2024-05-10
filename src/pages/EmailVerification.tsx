@@ -1,12 +1,12 @@
 // import ChangePasswordForm from "../components/ChangePasswordForm";
 
-import Button from "@components/ui/Button";
-import Input from "@components/ui/Input";
-import { useToast } from "@components/ui/use-toast";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import { useToast } from "@/utils/use-toast";
 import { useRef, useState } from "react";
 import { useVerifyMutation } from "../features/auth/authApiSlice";
-import { Toaster } from "../toaster";
 import { ToastAction } from "@radix-ui/react-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function EmailVerification() {
   const codeRef = useRef<HTMLInputElement | null>(null);
@@ -14,9 +14,12 @@ export default function EmailVerification() {
 
   const [verify, { isLoading }] = useVerifyMutation();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    console.log(code);
 
     await verify({
       code: code,
@@ -27,9 +30,10 @@ export default function EmailVerification() {
 
         toast({
           title: "Your operation was successful",
-          description: "Redirecting to email verification page...",
+          description: "Redirecting to login page...",
           action: <ToastAction altText="Try again">Try again</ToastAction>,
         });
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -48,13 +52,12 @@ export default function EmailVerification() {
       {/* <div className="absolute top-16 text-gray-600 left-24">
         <p>{"←"}&nbsp;&nbsp; back to login page</p>
       </div> */}
-      <Toaster />
       <div className="flex h-fit outline-2 outline-red-500 flex-col items-center gap-4">
-        <p className="font-extrabold text-primary font-Raleway text-4xl">
+        <p className="font-extrabold text-primary font-Raleway text-6xl">
           We Sent You A Verification Code
         </p>
-        <p className="text-sm font-light font-Raleway mb-8 text-primary opacity-60">
-          Check your email.
+        <p className="text-lg font-light font-Raleway mb-8 text-primary opacity-60">
+          Please check your email.
         </p>
         <form
           className="w-7/12"
@@ -63,7 +66,7 @@ export default function EmailVerification() {
           <div className="mb-8">
             <label
               htmlFor="code"
-              className="block text-xs font-light"
+              className="block text-lg font-light"
             >
               Verification Code
             </label>

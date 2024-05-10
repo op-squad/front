@@ -1,13 +1,23 @@
-import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "@/features/auth/authSlice";
+import assistantReducer from "@/features/crud/assistant/assistantSlice";
+import doctorReducer from "@/features/crud/doctor/doctorSlice";
+import patientReducer from "@/features/crud/patient/patientSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import authReducer from "../features/auth/authSlice";
 import { apiSlice } from "./api/apiSlice";
 
+// Combine reducers
+const rootReducer = combineReducers({
+  [apiSlice.reducerPath]: apiSlice.reducer,
+  assistant: assistantReducer,
+  doctor: doctorReducer,
+  patient: patientReducer,
+  auth: authReducer,
+});
+
 export const store = configureStore({
-  reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    auth: authReducer,
-  },
+  reducer: rootReducer,
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),
 

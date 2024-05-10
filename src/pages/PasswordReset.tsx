@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Button from "../components/ui/Button";
-import Input from "../components/ui/Input";
+import { useToast } from "@/utils/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
-import { useToast } from "@components/ui/use-toast";
+import { useState } from "react";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import {
   usePwdForgotMutation,
   usePwdResetMutation,
-} from "../features/auth/authApiSlice";
-import { Toaster } from "../toaster";
+} from "@/features/auth/authApiSlice";
+import { Toaster } from "@/utils/toaster";
 
 export default function PasswordReset() {
   const [sent, setSent] = useState(false); // State to track if verification code was sent
