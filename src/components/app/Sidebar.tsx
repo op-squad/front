@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaPowerOff } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 import doctorProfile from "@/assets/profile/doctorProfile";
-import doctorImg from "@/assets/profile/doctor.jpg";
 import { logOut } from "@/features/auth/authSlice";
 import { useDispatch } from "react-redux";
 

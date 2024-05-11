@@ -16,8 +16,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "@/pages/Test";
-import doctorProfile from "@assets/profile/doctorProfile";
-
+import doctorProfile from "./assets/profile/doctorProfile";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -96,60 +95,34 @@ export default function App() {
 
         {/* We want to protect these routes */}
         <Route element={<RequireAuth />}>
-        <Route
-          path="dashboard"
-          element={<Dashboard />}
-        ></Route>
-        <Route
-          path="profile-details"
-          element={<RegisterDetails />}
-        ></Route>
-        <Route
-          path="patients"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="models"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="calendar"
-          element={<NotFound />}
-        ></Route>
-        <Route
-          path="settings"
-          element={
-            <Settings
-              context={context}
-              actions={actionTypes}
-            />
-          }
+          <Route
+            path="dashboard"
+            element={<Dashboard />}
           ></Route>
-
           <Route
             path="profile-details"
             element={<RegisterDetails />}
           ></Route>
           <Route
-            path="profile"
+            path="patients"
+            element={<NotFound />}
+          ></Route>
+          <Route
+            path="models"
+            element={<NotFound />}
+          ></Route>
+          <Route
+            path="calendar"
+            element={<NotFound />}
+          ></Route>
+          <Route
+            path="settings"
             element={
-              <ProfileSettings
+              <Settings
                 context={context}
                 actions={actionTypes}
               />
             }
-          ></Route>
-          <Route
-            path="contact"
-            element={<ContactSettings toggleEdit={state} />}
-          ></Route>
-          <Route
-            path="password"
-            element={<PasswordSettings toggleEdit={state} />}
-          ></Route>
-          <Route
-            path="settings"
-            element={<Settings />}
           >
             <Route
               index
@@ -162,17 +135,27 @@ export default function App() {
             ></Route>
             <Route
               path="profile"
-              element={<ProfileSettings />}
+              element={
+                <ProfileSettings
+                  context={context}
+                  actions={actionTypes}
+                />
+              }
             ></Route>
             <Route
               path="contact"
-              element={<ContactSettings />}
+              element={<ContactSettings toggleEdit={state} />}
             ></Route>
             <Route
               path="password"
-              element={<PasswordSettings />}
+              element={<PasswordSettings toggleEdit={state} />}
             ></Route>
           </Route>
+
+          <Route
+            path="profile-details"
+            element={<RegisterDetails />}
+          ></Route>
         </Route>
 
         {/* Testing route */}

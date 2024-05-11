@@ -1,6 +1,3 @@
-import { useRef } from "react";
-// import doctorProfile from "../../../assets/profile/doctorProfile";
-import doctorImg from "@/assets/profile/doctor.jpg";
 import Input from "@/components/ui/Input";
 import { RefObject, useRef } from "react";
 
