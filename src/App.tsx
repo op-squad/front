@@ -40,6 +40,9 @@ const reducer = (state, action) => {
         unsavedChanges: {},
       };
     case actionTypes.SAVE_SETTINGS:
+      console.log("Saving changes");
+      console.log(state.unsavedChanges);
+
       return {
         ...state,
         editMode: false,

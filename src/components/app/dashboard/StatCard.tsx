@@ -26,7 +26,7 @@ export default function StatCard({ card, style, icon }: cardStatProps) {
     <CountUp
       start={0}
       end={card.value}
-      duration={2.75}
+      duration={2}
     >
       {({ countUpRef }) => (
         <div

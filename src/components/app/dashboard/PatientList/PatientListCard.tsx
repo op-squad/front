@@ -29,7 +29,7 @@ export default function PatientListCard() {
       <div className="flex flex-col gap-6 text-blue-950 px-2 2xl:px-4">
         <Patient
           imgSrc={"src/assets/profile/doctor.jpg"}
-          name={"Lekhder Belloumi"}
+          name={"Tebboune Abdelmadjid"}
           lastVisit={"2024/04/27"}
           diagnosis={"Ear Infection"}
         />
