@@ -1,10 +1,10 @@
 import { apiSlice } from "@/app/api/apiSlice";
 
 interface VisitInfo {
-  assistantName: string;
+  patientID: number;
   doctorName: string;
-  isVisited: boolean; // Assuming gender can be one of these options
   diagnosis: string;
+  visitDate: string;
 }
 
 interface PaginationParams {

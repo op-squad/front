@@ -15,7 +15,7 @@ import { useReducer } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
-// import Test from "@/pages/Test";
+// import Test from "./pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
 
 const actionTypes = {

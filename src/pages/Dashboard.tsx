@@ -3,8 +3,17 @@ import StatCard from "@/components/app/dashboard/StatCard";
 import ScheduleCard from "@/components/app/dashboard/ScheduleCard/ScheduleCard";
 import Visits from "@/components/app/dashboard/Visits/Visits";
 import PatientListCard from "@/components/app/dashboard/PatientList/PatientListCard";
+import {
+  useGetStatCountAppointmentQuery,
+  useGetStatTotalPatientCountQuery,
+  // useGetStatVisitsByDateQuery,
+} from "@/features/stat/statApiSlice";
 
 export default function Dashboard() {
+  const { data: patientCount } = useGetStatTotalPatientCountQuery({});
+  const { data: appointmentCount } = useGetStatCountAppointmentQuery({});
+  // const { data: visitsByDate } = useGetStatVisitsByDateQuery({});
+
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -16,9 +25,10 @@ export default function Dashboard() {
           <div className="flex flex-col h-full gap-8 basis-[65%]">
             <div className="flex gap-4">
               <StatCard
+                key={1}
                 card={{
                   cardName: "Patients",
-                  value: 145,
+                  value: patientCount,
                 }}
                 style={{
                   textColor: "text-blue-950",
@@ -31,9 +41,10 @@ export default function Dashboard() {
                 }}
               />
               <StatCard
+                key={2}
                 card={{
                   cardName: "Appointments",
-                  value: 514,
+                  value: appointmentCount,
                 }}
                 style={{
                   textColor: "text-blue-50",
@@ -46,6 +57,7 @@ export default function Dashboard() {
                 }}
               />
               <StatCard
+                key={3}
                 card={{
                   cardName: "Model Reports",
                   value: 64,

@@ -49,3 +49,7 @@ const patientSlice = createSlice({
 });
 
 export default patientSlice.reducer;
+
+// Grabbing a slice of the state and getting the patients list
+export const selectPatients = (state: { patient: PatientState }) =>
+  state.patient.patients;

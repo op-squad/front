@@ -129,7 +129,7 @@ export default function Register() {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: "Unknown error occurred",
+            description: err.data.message || "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;
@@ -157,7 +157,7 @@ export default function Register() {
           toast({
             variant: "destructive",
             title: "Uh oh! Something went wrong.",
-            description: "Unknown error occurred",
+            description: err.data.message || "Unknown error occurred",
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           });
           return;

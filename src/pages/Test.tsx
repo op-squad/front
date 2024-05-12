@@ -7,12 +7,28 @@
 //   useGetPatientsQuery,
 // } from "@/features/crud/patient/patientApiSlice";
 // import { toast, useToast } from "@/utils/use-toast";
+// import { useCreateVisitMutation } from "@/features/visit/visitApiSlice";
 
 // function Test() {
-//   const { data, error, isLoading } = useGetPatientsQuery({}); // Pass the required arguments here
+//   const { data } = useGetPatientsQuery({
+//     page: 1,
+//     size: 1,
+//     sort: ["string"],
+//   }); // Pass the required arguments here
 
 //   const [createDoctorProfile] = useCreateDoctorProfileMutation();
 //   const [createAssistantProfile] = useCreateAssistantProfileMutation();
+//   const [createVisit] = useCreateVisitMutation();
+
+//   const handleCreateVisit = async () => {
+//     await createVisit({
+//       patientID: 1,
+//       diagnosis: "diagnosis",
+//       doctorName: "masterOog",
+//       visitDate: "2024-05-12T09:33:39.947Z",
+//     });
+//     console.log(data);
+//   };
 
 //   const handleCreateDoctorProfile = async () => {
 //     await createDoctorProfile({
@@ -73,9 +89,9 @@
 //   return (
 //     <button
 //       className="bg-red-500 p-4 flex justify-center"
-//       onClick={handleCreatePatient}
+//       onClick={handleCreateVisit}
 //     >
-//       Create patient
+//       Create Visit
 //       {data}
 //     </button>
 //   );
