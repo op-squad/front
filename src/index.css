@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 * {
-    font-family: "Raleway";
+    font-family: "Raleway", "Lato";
 }
 /* * {
   outline: 2px red solid;

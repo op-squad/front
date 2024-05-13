@@ -17,6 +17,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "./pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
+import Patients from "./pages/Patients";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -108,7 +109,7 @@ export default function App() {
           ></Route>
           <Route
             path="patients"
-            element={<NotFound />}
+            element={<Patients />}
           ></Route>
           <Route
             path="models"
