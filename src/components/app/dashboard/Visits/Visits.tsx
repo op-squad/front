@@ -31,7 +31,7 @@ export default function Visits() {
   const chartRef = useRef(null);
   const chartSize = useDimensions(chartRef);
   return (
-    <div className="flex flex-col gap-8 bg-blue-50 rounded-xl max-w-full p-8">
+    <div className="flex flex-col gap-4 bg-blue-50 rounded-xl max-w-full p-8">
       <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">
         Patient Visits
       </p>
