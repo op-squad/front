@@ -15,11 +15,11 @@ const myPatientList = patientList.map((item, index) => {
   } else {
     return (
       <>
+        <hr />
         <Patient
           selected={false}
           props={item}
         />
-        <hr />
       </>
     );
   }
