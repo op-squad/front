@@ -2,7 +2,7 @@ import { useState } from "react";
 import { IoIosMore } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-export default function Patient({ selected, props }) {
+export default function Patient({ id, selected, props }) {
   const navigate = useNavigate();
 
   const [checked, setChecked] = useState(selected);
@@ -37,7 +37,7 @@ export default function Patient({ selected, props }) {
 
   return (
     <button
-      onClick={() => navigate("/settings")}
+      onClick={() => navigate(`/patients/${id}`)}
       className="flex w-full p-6 pr-12 pl-8 bg-white hover:bg-gray-100 cursor-pointer first:rounded-t-xl last:rounded-b-xl justify-between items-center text-blue-950"
     >
       <div className="flex items-center gap-8">

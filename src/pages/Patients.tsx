@@ -8,6 +8,8 @@ const myPatientList = patientList.map((item, index) => {
   if (index == 0) {
     return (
       <Patient
+        key={index}
+        id={index}
         selected={false}
         props={item}
       />
@@ -17,6 +19,8 @@ const myPatientList = patientList.map((item, index) => {
       <>
         <hr />
         <Patient
+          key={index}
+          id={index}
           selected={false}
           props={item}
         />

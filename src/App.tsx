@@ -18,6 +18,7 @@ import RequireUnAuth from "./components/RequireUnauth";
 import Test from "@/pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
 import Patients from "./pages/Patients";
+import PatientProfile from "./components/app/patient_list/PatientProfile";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -107,6 +108,10 @@ export default function App() {
           <Route
             path="patients"
             element={<Patients />}
+          ></Route>
+          <Route
+            path="patients/:patientId"
+            element={<PatientProfile />}
           ></Route>
           <Route
             path="models"
