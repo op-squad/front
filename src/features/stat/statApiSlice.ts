@@ -19,6 +19,15 @@ export const statApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+
+    getStatVisitsByMonth: builder.query({
+      query: () => {
+        return {
+          url: "/statistics/visits-by-month",
+        };
+      },
+    }),
+
     getStatCountAppointment: builder.query({
       query: () => {
         return {
