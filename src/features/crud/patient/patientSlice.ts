@@ -48,6 +48,9 @@ const patientSlice = createSlice({
   },
 });
 
+export const { addPatient, removePatient, updatePatient, setPatients } =
+  patientSlice.actions;
+
 export default patientSlice.reducer;
 
 // Grabbing a slice of the state and getting the patients list

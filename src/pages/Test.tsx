@@ -1,100 +1,45 @@
-// import { useCreateAssistantProfileMutation } from "@/features/crud/assistant/assistantApiSlice";
-// import { useGetDoctorProfileQuery } from "@/features/crud/doctor/doctorApiSlice";
-// import { useCreateDoctorProfileMutation } from "@/features/crud/doctor/doctorApiSlice";
-// import { useDeleteDoctorProfileMutation } from "@/features/crud/doctor/doctorApiSlice";
-// import {
-//   useCreatePatientMutation,
-//   useGetPatientsQuery,
-// } from "@/features/crud/patient/patientApiSlice";
-// import { toast, useToast } from "@/utils/use-toast";
-// import { useCreateVisitMutation } from "@/features/visit/visitApiSlice";
+import React, { useEffect } from "react";
+import { useGetPatientsQuery } from "@/features/crud/patient/patientApiSlice";
+import { useDispatch } from "react-redux";
+import { setPatients } from "@/features/crud/patient/patientSlice";
 
-// function Test() {
-//   const { data } = useGetPatientsQuery({
-//     page: 1,
-//     size: 1,
-//     sort: ["string"],
-//   }); // Pass the required arguments here
+const Test = () => {
+  const dispatch = useDispatch();
 
-//   const [createDoctorProfile] = useCreateDoctorProfileMutation();
-//   const [createAssistantProfile] = useCreateAssistantProfileMutation();
-//   const [createVisit] = useCreateVisitMutation();
+  // Fetch patients using the useGetPatientsQuery hook
+  const {
+    data: patients,
+    error,
+    isLoading,
+  } = useGetPatientsQuery({ page: 0, size: 10 }); // Adjust page and size as needed
 
-//   const handleCreateVisit = async () => {
-//     await createVisit({
-//       patientID: 1,
-//       diagnosis: "diagnosis",
-//       doctorName: "masterOog",
-//       visitDate: "2024-05-12T09:33:39.947Z",
-//     });
-//     console.log(data);
-//   };
+  useEffect(() => {
+    // When the data is fetched successfully, update the state in patientSlice
+    if (patients) {
+      dispatch(setPatients(patients)); // Dispatching setPatients action with fetched patients data
+    }
+  }, [dispatch, patients]);
 
-//   const handleCreateDoctorProfile = async () => {
-//     await createDoctorProfile({
-//       address: "mazagran",
-//       birthDate: "2003-02-02",
-//       firstname: "mohamed",
-//       gender: "MALE",
-//       lastname: "ben salah",
-//       phoneNumber: "0555555555",
-//       specialty: "dentist",
-//     });
-//     console.log(data);
-//   };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-//   const handleCreateAssistantProfile = async () => {
-//     await createAssistantProfile({
-//       address: "mazagran",
-//       birthDate: "2003-02-02",
-//       firstname: "mohamed",
-//       gender: "MALE",
-//       lastname: "ben salah",
-//       phoneNumber: "0555555555",
-//     });
-//     console.log(data);
-//   };
-//   // handleCreateDoctorProfile();
+  if (error) {
+    return <div>Error: Unknown error</div>;
+  }
 
-//   // const [deleteDoctorProfile] = useDeleteDoctorProfileMutation();
+  return (
+    <div>
+      <h2>Patients List</h2>
+      <ul>
+        {patients.map((patient) => (
+          <li key={patient.id}>
+            {patient.firstname} {patient.lastname} - {patient.phoneNumber}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-//   // deleteDoctorProfile({});
-
-//   const [createPatient] = useCreatePatientMutation();
-//   const { toast } = useToast();
-
-//   const handleCreatePatient = async () => {
-//     await createPatient({
-//       firstname: "mohamed",
-//       lastname: "bensalah",
-//       phonenumber: "0555555555",
-//     })
-//       .unwrap()
-//       .then((res) => {
-//         console.log(res);
-//         toast({
-//           variant: "destructive",
-//           title: "Uh oh! Something went wrong.",
-//           description: "There was a problem with your request.",
-//         });
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   };
-
-//   // const { data, error } = useGetPatientsQuery({}); // Pass the required arguments here
-//   console.log(data);
-
-//   return (
-//     <button
-//       className="bg-red-500 p-4 flex justify-center"
-//       onClick={handleCreateVisit}
-//     >
-//       Create Visit
-//       {data}
-//     </button>
-//   );
-// }
-
-// export default Test;
+export default Test;
