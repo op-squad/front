@@ -35,7 +35,6 @@ export default function Dashboard() {
           <div className="flex flex-col h-full gap-8 basis-[65%]">
             <div className="flex gap-4">
               <StatCard
-                key={1}
                 card={{
                   cardName: "Patients",
                   value: patientCount,
@@ -51,7 +50,6 @@ export default function Dashboard() {
                 }}
               />
               <StatCard
-                key={2}
                 card={{
                   cardName: "Appointments",
                   value: appointmentCount,
@@ -67,7 +65,6 @@ export default function Dashboard() {
                 }}
               />
               <StatCard
-                key={3}
                 card={{
                   cardName: "Model Reports",
                   value: 27,
