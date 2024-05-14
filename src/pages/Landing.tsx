@@ -1,5 +1,6 @@
 import Feature from "@/components/Feature";
 import NavBar from "@/components/NavBar";
+import { Link } from "react-router-dom";
 
 function Landing() {
   return (
@@ -7,19 +8,29 @@ function Landing() {
       <NavBar />
 
       {/* Hero section */}
-      <div className="flex bg-gray-200 px-40 h-screen flex-col justify-center gap-8">
-        <h1 className="font-bold text-7xl">
-          AI-Powered Precision for <br />
-          Medical Diagnosis
-        </h1>
-        <p className="font-light text-2xl">
-          Maximize efficiency in patient care with <br />
-          our advanced AI technology for accurate <br />
-          diagnoses and streamlined time <br /> management.
-        </p>
-        <button className="bg-black font-semibold mb-24 py-2 px-12 w-fit text-white">
-          Join US Now!
-        </button>
+      <div className="flex bg-gray-200 items-center">
+        <div className="flex bg-gray-200 px-40 h-screen flex-col justify-center gap-8">
+          <h1 className="font-bold text-7xl">
+            AI-Powered Precision for <br />
+            Medical Diagnosis
+          </h1>
+          <p className="font-light text-2xl">
+            Maximize efficiency in patient care with <br />
+            our advanced AI technology for accurate <br />
+            diagnoses and streamlined time <br /> management.
+          </p>
+          <Link
+            to="/register"
+            className="bg-black font-semibold mb-24 py-2 px-12 w-fit text-white"
+          >
+            Join US Now!
+          </Link>
+        </div>
+        <img
+          src="src/assets/hero.svg"
+          alt=""
+          className="object-cover mb-20 h-auto max-h-screen w-4/12 max-w-full"
+        />
       </div>
 
       {/* Features section */}
