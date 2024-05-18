@@ -4,7 +4,7 @@ const patientList = [
   {
     familyName: "Belloumi",
     firstName: "Lekhder",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/60.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/04",
     diagnosis: "Ear Infection",
@@ -13,7 +13,7 @@ const patientList = [
   {
     familyName: "Abdelmajid",
     firstName: "Tebboune",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/61.jpg",
     nextAppointment: "",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -22,7 +22,7 @@ const patientList = [
   {
     familyName: "Radouane",
     firstName: "Mostafa",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/62.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -31,7 +31,8 @@ const patientList = [
   {
     familyName: "Yousra",
     firstName: "Youli",
-    profilePicture: doctorImg,
+    profilePicture:
+      "https://xsgames.co/randomusers/assets/avatars/female/48.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -40,7 +41,7 @@ const patientList = [
   {
     familyName: "Amine",
     firstName: "Kouider",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/15.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -49,7 +50,7 @@ const patientList = [
   {
     familyName: "Ali",
     firstName: "Benchikh",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/25.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -58,7 +59,8 @@ const patientList = [
   {
     familyName: "Aisha",
     firstName: "Boulenoir",
-    profilePicture: doctorImg,
+    profilePicture:
+      "https://xsgames.co/randomusers/assets/avatars/female/22.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
@@ -67,7 +69,7 @@ const patientList = [
   {
     familyName: "Harrag",
     firstName: "Moussa",
-    profilePicture: doctorImg,
+    profilePicture: "https://xsgames.co/randomusers/assets/avatars/male/22.jpg",
     nextAppointment: "16 Jun - 1:00PM",
     lastVisit: "2024/05/01",
     diagnosis: "Ear Infection",
