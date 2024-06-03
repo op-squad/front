@@ -17,6 +17,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "@/pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
+import Calendar from "./pages/Calendar";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -113,7 +114,7 @@ export default function App() {
           ></Route>
           <Route
             path="calendar"
-            element={<NotFound />}
+            element={<Calendar />}
           ></Route>
           <Route
             path="settings"
