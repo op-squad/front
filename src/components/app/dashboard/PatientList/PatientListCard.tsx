@@ -48,7 +48,7 @@ const Patient = ({ imgSrc, name, lastVisit, diagnosis }) => {
 };
 
 export default function PatientListCard() {
-  // Fetch patient data using Redux Toolkit Query
+  // // Fetch patient data using Redux Toolkit Query
   const {
     data: patients,
     error,

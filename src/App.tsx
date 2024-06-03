@@ -17,7 +17,8 @@ import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "./pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
-import Patients from "./pages/Patients";
+import Patients from "@/pages/Patients";
+import ChatRoom from "@/pages/ChatRoom";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -166,6 +167,10 @@ export default function App() {
         <Route
           path="/test"
           element={<Test />}
+        ></Route>
+        <Route
+          path="/chat"
+          element={<ChatRoom />}
         ></Route>
 
         {/* catch all */}

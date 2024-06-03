@@ -1,43 +1,59 @@
+import React, { useState, useEffect, ChangeEvent } from "react";
+import Fuse from "fuse.js";
 import Sidebar from "@/components/app/Sidebar";
 import { GoPlus } from "react-icons/go";
 import { FaFilter } from "react-icons/fa";
 import Patient from "@/components/app/patient_list/PatientCard";
 import patientList from "@/assets/patients/patients";
 
-const myPatientList = patientList.map((item, index) => {
-  if (index == 0) {
-    return (
+// Configure Fuse.js
+const fuseOptions = {
+  keys: ["firstName", "familyName", "nextAppointment"],
+  threshold: 0.3, // Adjust the threshold for more or less fuzzy matching
+};
+const fuse = new Fuse(patientList, fuseOptions);
+
+export default function Patients() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredPatients, setFilteredPatients] = useState(patientList);
+
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredPatients(patientList);
+    } else {
+      const results = fuse.search(searchQuery);
+      setFilteredPatients(results.map((result) => result.item));
+    }
+  }, [searchQuery]);
+
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent form submission
+    }
+  };
+
+  const handleFilter = () => {
+    console.log("handle filter");
+  };
+
+  const handleAddPatient = () => {
+    console.log("handle add patient");
+  };
+
+  const myPatientList = filteredPatients.map((item, index) => (
+    <React.Fragment key={index}>
+      {index !== 0 && <hr />}
       <Patient
         selected={false}
         props={item}
       />
-    );
-  } else {
-    return (
-      <>
-        <hr />
-        <Patient
-          selected={false}
-          props={item}
-        />
-      </>
-    );
-  }
-});
+    </React.Fragment>
+  ));
 
-const handleFilter = () => {
-  console.log("handle filter");
-};
-
-const handleSearch = () => {
-  console.log("handle search");
-};
-
-const handleAddPatient = () => {
-  console.log("handle add patient");
-};
-
-export default function Patients() {
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -51,11 +67,11 @@ export default function Patients() {
               <input
                 className="rounded-md h-8 w-96 px-2 bg-gray-300"
                 type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyPress={handleKeyPress}
               />
-              <button
-                onClick={handleSearch}
-                className="h-8 bg-indigo-600 rounded-md px-6 text-blue-50 font-semibold text-sm"
-              >
+              <button className="h-8 bg-indigo-600 rounded-md px-6 text-blue-50 font-semibold text-sm">
                 Search
               </button>
               <button onClick={handleFilter}>
