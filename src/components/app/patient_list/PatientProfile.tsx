@@ -38,7 +38,7 @@ export default function Patients() {
               />
               <div className="flex flex-col items-center justify-center">
                 <div className="font-semibold text-xl">
-                  {`${data.firstname.charAt(0).toUpperCase() + data.firstname.substring(1, data.firstname.length)} ${data.lastname.charAt(0).toUpperCase() + data.lastname.substring(1, data.lastname.length)}`}
+                  {`${data.firstname.charAt(0).toUpperCase() + data.firstname.slice(1)} ${data.lastname.charAt(0).toUpperCase() + data.lastname.slice(1)}`}
                 </div>
                 <div className="text-sm text-gray-500">{data.email}</div>
               </div>
@@ -61,7 +61,7 @@ export default function Patients() {
                 </div>
                 <div className="font-Lato text-lg">
                   {data.gender.charAt(0).toUpperCase() +
-                    data.gender.substring(1, data.gender.length).toLowerCase()}
+                    data.gender.slice(1).toLowerCase()}
                 </div>
               </div>
               <div className="flex flex-col justify-center">
