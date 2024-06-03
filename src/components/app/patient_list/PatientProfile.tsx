@@ -8,10 +8,7 @@ export default function Patients() {
   const { patientId } = useParams();
   const patient = useGetPatientByIDQuery(parseInt(patientId));
   console.log(patient);
-  const { data, isError, error, isLoading } = useGetPatientByIDQuery(
-    parseInt(patientId),
-  );
-  console.log(data);
+  const { data, isError, error, isLoading } = patient;
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen text-2xl">
@@ -41,7 +38,7 @@ export default function Patients() {
               />
               <div className="flex flex-col items-center justify-center">
                 <div className="font-semibold text-xl">
-                  {`${data.firstname} ${data.lastname}`}
+                  {`${data.firstname.charAt(0).toUpperCase() + data.firstname.substring(1, data.firstname.length)} ${data.lastname.charAt(0).toUpperCase() + data.lastname.substring(1, data.lastname.length)}`}
                 </div>
                 <div className="text-sm text-gray-500">{data.email}</div>
               </div>
@@ -62,7 +59,10 @@ export default function Patients() {
                 <div className="font-semibold text-sm text-gray-500">
                   Gender
                 </div>
-                <div className="font-Lato text-lg">{data.gender}</div>
+                <div className="font-Lato text-lg">
+                  {data.gender.charAt(0).toUpperCase() +
+                    data.gender.substring(1, data.gender.length).toLowerCase()}
+                </div>
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
@@ -74,30 +74,30 @@ export default function Patients() {
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
-                  Mobile Number
-                </div>
-                <div className="font-Lato text-lg">
-                  +213{data.phoneNumber.substring(1, data.phoneNumber.length)}
-                </div>
-              </div>
-              <div className="flex flex-col justify-center">
-                <div className="font-semibold text-sm text-gray-500">
                   Diagnosis
                 </div>
                 <div className="font-Lato text-lg">Ear Infection</div>
               </div>
-              <div className="flex flex-col justify-center">
+              {/* <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
-                  Status
+                Status
                 </div>
                 <div className="font-Lato text-lg">Active</div>
-              </div>
+              </div> */}
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
                   Registration Date
                 </div>
                 <div className="font-Lato text-lg">
                   {moment(data.createdAt).format("DD/MM/YYYY")}
+                </div>
+              </div>
+              <div className="flex flex-col justify-center">
+                <div className="font-semibold text-sm text-gray-500">
+                  Mobile Number
+                </div>
+                <div className="font-Lato text-lg">
+                  +213{data.phoneNumber.substring(1, data.phoneNumber.length)}
                 </div>
               </div>
             </div>
