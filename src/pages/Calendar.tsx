@@ -1,5 +1,5 @@
 import Sidebar from "@/components/app/Sidebar";
-import { IoIosMore } from "react-icons/io";
+import { Dropdown } from "@/components/ui/Dropdown";
 
 export default function Calendar() {
   return (
@@ -29,9 +29,7 @@ export default function Calendar() {
             <div className="font-medium">Hmed Bouallam</div>
             <div className="font-medium">Root Canal</div>
             <div className="font-medium">
-              <button className="hover:bg-gray-300 rounded-full p-1.5">
-                <IoIosMore />
-              </button>
+              <Dropdown />
             </div>
 
             <div className="font-medium">2</div>
@@ -40,9 +38,7 @@ export default function Calendar() {
             <div className="font-medium">Hmed Bouallam</div>
             <div className="font-medium">Root Canal</div>
             <div className="font-medium">
-              <button className="hover:bg-gray-300 rounded-full p-1.5">
-                <IoIosMore />
-              </button>
+              <Dropdown />
             </div>
 
             <div className="font-medium">3</div>
@@ -51,9 +47,7 @@ export default function Calendar() {
             <div className="font-medium">Hmed Bouallam</div>
             <div className="font-medium">Root Canal</div>
             <div className="font-medium">
-              <button className="hover:bg-gray-300 rounded-full p-1.5">
-                <IoIosMore />
-              </button>
+              <Dropdown />
             </div>
 
             <div className="font-medium">4</div>
@@ -62,9 +56,7 @@ export default function Calendar() {
             <div className="font-medium">Hmed Bouallam</div>
             <div className="font-medium">Root Canal</div>
             <div className="font-medium">
-              <button className="hover:bg-gray-300 rounded-full p-1.5">
-                <IoIosMore />
-              </button>
+              <Dropdown />
             </div>
           </div>
         </div>
