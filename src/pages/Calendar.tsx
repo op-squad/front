@@ -10,7 +10,7 @@ export default function Calendar() {
           Calendar
         </h1>
         <div className="flex flex-col gap-8 h-fit w-full">
-          <div className="flex">
+          <div className="self-end">
             <button className="bg-indigo-600 px-8 py-4 rounded-xl text-blue-50 font-semibold text-sm">
               New Appointment
             </button>
@@ -22,6 +22,7 @@ export default function Calendar() {
             <div className="text-gray-600 font-semibold">Patient</div>
             <div className="text-gray-600 font-semibold">Type</div>
             <div className="text-gray-600 font-semibold">Action</div>
+
             <div className="font-medium">1</div>
             <div className="font-medium font-Lato">10/04/2024</div>
             <div className="font-medium font-Lato">15/04/2024</div>
@@ -32,6 +33,7 @@ export default function Calendar() {
                 <IoIosMore />
               </button>
             </div>
+
             <div className="font-medium">2</div>
             <div className="font-medium font-Lato">10/04/2024</div>
             <div className="font-medium font-Lato">15/04/2024</div>
@@ -42,6 +44,7 @@ export default function Calendar() {
                 <IoIosMore />
               </button>
             </div>
+
             <div className="font-medium">3</div>
             <div className="font-medium font-Lato">10/04/2024</div>
             <div className="font-medium font-Lato">15/04/2024</div>
@@ -52,6 +55,7 @@ export default function Calendar() {
                 <IoIosMore />
               </button>
             </div>
+
             <div className="font-medium">4</div>
             <div className="font-medium font-Lato">10/04/2024</div>
             <div className="font-medium font-Lato">15/04/2024</div>
