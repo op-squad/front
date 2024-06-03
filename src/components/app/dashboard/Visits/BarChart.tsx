@@ -1,15 +1,18 @@
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
+
 export default function BarChart({ height, width }) {
   const marginTop = 30;
   const marginRight = 0;
   const marginBottom = 30;
   const marginLeft = 40;
   const ref = useRef();
+
   useEffect(() => {
     ref.current.innerHTML = "";
+
     const data = [
-      { label: "Jan", value: 512 },
+      { label: "Jan", value: 100 },
       { label: "Feb", value: 254 },
       { label: "Mar", value: 684 },
       { label: "Apr", value: 823 },
@@ -22,15 +25,25 @@ export default function BarChart({ height, width }) {
       { label: "Nov", value: 488 },
       { label: "Dec", value: 132 },
     ];
+
     const xScale = d3
       .scaleBand()
       .domain(data.map((e) => e.label))
       .range([marginLeft, width - marginRight])
       .padding(0.5);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, d3.max(data, (d) => d.value)]) // Use the maximum value in the data array as the yScale domain
+      .nice() // Adjust the domain to nice round numbers
+      .range([height - marginBottom, marginTop]);
+
     const svgElement = d3.select(ref.current);
+
+    // Append x-axis
     svgElement
       .append("g")
-      .attr("transform", `translate(0,${height - marginBottom})`)
+      .attr("transform", `translate(0, ${height - marginBottom})`)
       .call(d3.axisBottom(xScale))
       .call((g) => g.select(".domain").remove())
       .call((g) => g.selectAll(".tick line").remove())
@@ -40,10 +53,8 @@ export default function BarChart({ height, width }) {
           .style("font-size", "16px")
           .classed("text-gray-500", true),
       );
-    const yScale = d3
-      .scaleLinear()
-      .domain([0, 1200])
-      .range([height - marginBottom, marginTop]);
+
+    // Append y-axis
     svgElement
       .append("g")
       .attr("transform", `translate(${width}, 0)`)
@@ -51,7 +62,7 @@ export default function BarChart({ height, width }) {
         d3
           .axisLeft(yScale)
           .tickSize(width - marginLeft - marginRight)
-          .ticks(6),
+          .ticks(12),
       )
       .call((g) => g.select(".domain").remove())
       .call((g) =>
@@ -63,23 +74,31 @@ export default function BarChart({ height, width }) {
       .call((g) =>
         g
           .selectAll(".tick text")
-          .attr("x", -width + marginRight + marginLeft - 1)
+          .attr("x", -width + marginRight + marginLeft - 6)
           .attr("dy", 7)
           .style("font-size", "16px")
           .classed("text-gray-500", true),
       );
+
+    // Animate the bars using transition
     svgElement
-      .append("g")
-      .attr("fill", "#818cf8")
-      .selectAll()
+      .selectAll("rect")
       .data(data)
-      .join("rect")
+      .enter()
+      .append("rect")
       .attr("x", (d) => xScale(d.label))
-      .attr("y", (d) => yScale(d.value) + 1)
-      .attr("height", (d) => yScale(0) - yScale(d.value))
+      .attr("y", height - marginBottom) // Start the bars at the bottom of the chart
+      .attr("height", 0) // Start with zero height
       .attr("width", xScale.bandwidth())
-      .attr("rx", 5);
+      .attr("rx", 5)
+      .attr("fill", "#818cf8")
+      .transition() // Apply transition for smooth animation
+      .duration(800) // Animation duration in milliseconds
+      .delay((d, i) => i * 100) // Delay each bar's animation slightly for a staggered effect
+      .attr("y", (d) => yScale(d.value)) // Final y position based on the scaled value
+      .attr("height", (d) => height - marginBottom - yScale(d.value)); // Final height based on the scaled value
   }, [height, width]);
+
   return (
     <svg
       ref={ref}

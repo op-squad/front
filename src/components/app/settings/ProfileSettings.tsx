@@ -16,7 +16,7 @@ export default function ProfileSettings({ context, actions }) {
       if (files[0].size <= 2097152) {
         handleUpdateSettings("profilePicture", URL.createObjectURL(files[0]));
       } else {
-        alert("this is too big");
+        alert("Picture size is too big");
       }
     }
   };
@@ -72,8 +72,7 @@ export default function ProfileSettings({ context, actions }) {
               id="family-name"
               value={
                 state.editMode
-                  ? state.unsavedChanges.familyName ||
-                    state.profileSettings.familyName
+                  ? state.unsavedChanges.familyName
                   : state.profileSettings.familyName
               }
               onChange={(e) => {
@@ -94,8 +93,7 @@ export default function ProfileSettings({ context, actions }) {
               id="first-name"
               value={
                 state.editMode
-                  ? state.unsavedChanges.firstName ||
-                    state.profileSettings.firstName
+                  ? state.unsavedChanges.firstName
                   : state.profileSettings.firstName
               }
               onChange={(e) => {
@@ -112,6 +110,9 @@ export default function ProfileSettings({ context, actions }) {
             </label>
             <select
               id="role"
+              onChange={(e) => {
+                handleUpdateSettings("gender", e.target.value);
+              }}
               className="rounded-md h-10 border-solid border-2 px-4 w-max"
             >
               <option value="MALE">Male</option>
@@ -127,6 +128,9 @@ export default function ProfileSettings({ context, actions }) {
             </label>
             <select
               id="specialty"
+              onChange={(e) => {
+                handleUpdateSettings("specialty", e.target.value);
+              }}
               className="rounded-md h-10 border-solid border-2 px-4 w-max"
             >
               <option value="Surgery">Surgery</option>

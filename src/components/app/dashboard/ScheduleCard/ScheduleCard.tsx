@@ -1,11 +1,22 @@
-import { useState } from "react";
-import Calendar from "./Calendar";
+import { useState, useEffect } from "react";
 import moment from "moment";
+import { useGetStatVisitsByDateQuery } from "@/features/stat/statApiSlice";
 import Appointment from "./Appointment";
 import CalendarController from "./CalendarController";
+import Calendar from "./Calendar";
 
 export default function ScheduleCard() {
   const [date, setDate] = useState(moment());
+  const {
+    // data: visitsByDate,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetStatVisitsByDateQuery({});
+
+  useEffect(() => {
+    refetch(); // Ensure data is refetched when date changes
+  }, [date, refetch]);
 
   return (
     <div className="flex flex-col gap-6 bg-blue-50 text-blue-950 rounded-xl p-8">
@@ -24,25 +35,25 @@ export default function ScheduleCard() {
         setCurrentDay={setDate}
       />
       <hr className="mx-[-32px]" />
-      <div className="flex flex-col gap-4">
-        <Appointment
-          duration={"10:00am - 10:30am"}
-          title={"Patient Checkup"}
-          link={""}
-        />
-        <hr />
-        <Appointment
-          duration={"10:00am - 10:30am"}
-          title={"Patient Checkup"}
-          link={""}
-        />
-        <hr />
-        <Appointment
-          duration={"10:00am - 10:30am"}
-          title={"Patient Checkup"}
-          link={""}
-        />
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : isError ? (
+        <p>Error fetching visits for {date.format("YYYY-MM-DD")}</p>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {/* {visitsByDate &&
+            // visitsByDate[date.format("YYYY-MM-DD")].map((visit) => ( */}
+          {/* <React.Fragment key={visit.id}> */}
+          <Appointment
+            duration="10:00 AM - 11:00 AM"
+            title={"visit.doctorName" || "Dr. John Doe"}
+            link={""}
+          />
+          <hr />
+          {/* </React.Fragment> */}
+          {/* ))} */}
+        </div>
+      )}
     </div>
   );
 }

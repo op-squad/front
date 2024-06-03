@@ -15,10 +15,11 @@ import { useReducer } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
-import Test from "@/pages/Test";
+import Test from "./pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
-import Patients from "./pages/Patients";
 import PatientProfile from "./components/app/patient_list/PatientProfile";
+import Patients from "@/pages/Patients";
+import ChatRoom from "@/pages/ChatRoom";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -42,6 +43,9 @@ const reducer = (state, action) => {
         unsavedChanges: {},
       };
     case actionTypes.SAVE_SETTINGS:
+      console.log("Saving changes");
+      console.log(state.unsavedChanges);
+
       return {
         ...state,
         editMode: false,
@@ -168,6 +172,10 @@ export default function App() {
         <Route
           path="/test"
           element={<Test />}
+        ></Route>
+        <Route
+          path="/chat"
+          element={<ChatRoom />}
         ></Route>
 
         {/* catch all */}

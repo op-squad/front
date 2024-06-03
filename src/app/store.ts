@@ -2,6 +2,9 @@ import authReducer from "@/features/auth/authSlice";
 import assistantReducer from "@/features/crud/assistant/assistantSlice";
 import doctorReducer from "@/features/crud/doctor/doctorSlice";
 import patientReducer from "@/features/crud/patient/patientSlice";
+import statReducer from "@/features/stat/statSlice";
+import visitReducer from "@/features/visit/visitSlice";
+import chatReducer from "@/features/chat/chatSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./api/apiSlice";
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   doctor: doctorReducer,
   patient: patientReducer,
   auth: authReducer,
+  visit: visitReducer,
+  stat: statReducer,
+  chat: chatReducer,
 });
 
 export const store = configureStore({

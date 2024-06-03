@@ -3,9 +3,29 @@ import StatCard from "@/components/app/dashboard/StatCard";
 import ScheduleCard from "@/components/app/dashboard/ScheduleCard/ScheduleCard";
 import Visits from "@/components/app/dashboard/Visits/Visits";
 import PatientListCard from "@/components/app/dashboard/PatientList/PatientListCard";
+import {
+  useGetStatCountAppointmentQuery,
+  useGetStatTotalPatientCountQuery,
+  // useGetStatVisitsByDateQuery,
+} from "@/features/stat/statApiSlice";
+import ClockLoader from "react-spinners/ClockLoader";
+import Chat from "./ChatRoom";
 
 export default function Dashboard() {
-  return (
+  const { data: patientCount, isLoading: totalPatientLoading } =
+    useGetStatTotalPatientCountQuery({});
+  const { data: appointmentCount, isLoading: appointmentCountLoading } =
+    useGetStatCountAppointmentQuery({});
+  // const { data: visitsByDate } = useGetStatVisitsByDateQuery({});
+
+  return totalPatientLoading && appointmentCountLoading ? (
+    <div className="flex justify-center items-center h-screen bg-blue-100">
+      <ClockLoader
+        color="#393DD8"
+        size={70}
+      />
+    </div>
+  ) : (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
       <div className="flex flex-col gap-8 w-full h-full p-8 overflow-y-auto bg-blue-100">
@@ -18,7 +38,7 @@ export default function Dashboard() {
               <StatCard
                 card={{
                   cardName: "Patients",
-                  value: 145,
+                  value: patientCount,
                 }}
                 style={{
                   textColor: "text-blue-950",
@@ -33,7 +53,7 @@ export default function Dashboard() {
               <StatCard
                 card={{
                   cardName: "Appointments",
-                  value: 514,
+                  value: appointmentCount,
                 }}
                 style={{
                   textColor: "text-blue-50",
@@ -48,7 +68,7 @@ export default function Dashboard() {
               <StatCard
                 card={{
                   cardName: "Model Reports",
-                  value: 64,
+                  value: 27,
                 }}
                 style={{
                   textColor: "bg-blue-50",
@@ -65,10 +85,8 @@ export default function Dashboard() {
             <PatientListCard />
           </div>
           <div className="flex flex-col gap-8 h-max basis-[35%]">
-            <div className="bg-blue-50 rounded-xl p-8">
-              <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">
-                To be determined
-              </p>
+            <div className="bg-blue-50 max-h-96 rounded-xl ">
+              <Chat />
             </div>
             <ScheduleCard />
           </div>

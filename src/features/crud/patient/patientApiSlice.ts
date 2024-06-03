@@ -23,9 +23,9 @@ export const patientApiSlice = apiSlice.injectEndpoints({
     }),
 
     getPatients: builder.query({
-      query: () => {
+      query: (body: { page: number; size: number }) => {
         return {
-          url: `/patients`,
+          url: `/patients?page=${body.page}&size=${body.size}`,
         };
       },
     }),
