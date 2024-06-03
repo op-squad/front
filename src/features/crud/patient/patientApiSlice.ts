@@ -17,7 +17,7 @@ export const patientApiSlice = apiSlice.injectEndpoints({
     getPatientByID: builder.query({
       query: (id: number) => {
         return {
-          url: `/patient?id=${id}`,
+          url: `/patient/?id=${id}`,
         };
       },
     }),
@@ -33,7 +33,7 @@ export const patientApiSlice = apiSlice.injectEndpoints({
     deletePatientByID: builder.mutation({
       query: (id: number) => {
         return {
-          url: `/patient?patientId=${id}`,
+          url: `/patient/?patientId=${id}`,
           method: "DELETE",
         };
       },

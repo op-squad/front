@@ -1,10 +1,29 @@
 import { useParams } from "react-router-dom";
 import Sidebar from "../Sidebar";
 import patientPicture from "../../../assets/profile/doctor.jpg";
+import { useGetPatientByIDQuery } from "@/features/crud/patient/patientApiSlice";
+import moment from "moment";
 
 export default function Patients() {
   const { patientId } = useParams();
-  console.log(patientId);
+  const patient = useGetPatientByIDQuery(parseInt(patientId));
+  console.log(patient);
+  const { data, isError, error, isLoading } = useGetPatientByIDQuery(
+    parseInt(patientId),
+  );
+  console.log(data);
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl">
+        Loading...
+      </div>
+    );
+  if (isError)
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl">
+        Error {error.status}
+      </div>
+    );
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
@@ -20,9 +39,11 @@ export default function Patients() {
                 src={patientPicture}
                 alt=""
               />
-              <div>
-                <div className="font-semibold text-xl">Name Name</div>
-                <div className="text-sm text-gray-500">email@email.com</div>
+              <div className="flex flex-col items-center justify-center">
+                <div className="font-semibold text-xl">
+                  {`${data.firstname} ${data.lastname}`}
+                </div>
+                <div className="text-sm text-gray-500">{data.email}</div>
               </div>
               <div className="flex flex-col justify-center items-center">
                 <div className="font-semibold text-sm text-gray-500">
@@ -41,19 +62,23 @@ export default function Patients() {
                 <div className="font-semibold text-sm text-gray-500">
                   Gender
                 </div>
-                <div className="font-Lato text-lg">Male</div>
+                <div className="font-Lato text-lg">{data.gender}</div>
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
                   Birth Date
                 </div>
-                <div className="font-Lato text-lg">01/01/1970</div>
+                <div className="font-Lato text-lg">
+                  {moment(data.birthDate).format("DD/MM/YYYY")}
+                </div>
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
                   Mobile Number
                 </div>
-                <div className="font-Lato text-lg">+213557987345</div>
+                <div className="font-Lato text-lg">
+                  +213{data.phoneNumber.substring(1, data.phoneNumber.length)}
+                </div>
               </div>
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
@@ -71,7 +96,9 @@ export default function Patients() {
                 <div className="font-semibold text-sm text-gray-500">
                   Registration Date
                 </div>
-                <div className="font-Lato text-lg">01/02/2024</div>
+                <div className="font-Lato text-lg">
+                  {moment(data.createdAt).format("DD/MM/YYYY")}
+                </div>
               </div>
             </div>
             <div className="flex flex-col bg-blue-50 rounded-xl gap-y-8 p-8">
