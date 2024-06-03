@@ -1,19 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, ChangeEvent } from "react";
 import Fuse from "fuse.js";
 import Sidebar from "@/components/app/Sidebar";
 import { GoPlus } from "react-icons/go";
 import { FaFilter } from "react-icons/fa";
 import Patient from "@/components/app/patient_list/PatientCard";
-import patientList from "@/assets/patients/patients";
-
+import { useGetPatientsQuery } from "@/features/crud/patient/patientApiSlice";
+// import patientList from "@/assets/patients/patients";
 // Configure Fuse.js
-const fuseOptions = {
-  keys: ["firstName", "familyName", "nextAppointment"],
-  threshold: 0.3, // Adjust the threshold for more or less fuzzy matching
-};
-const fuse = new Fuse(patientList, fuseOptions);
 
 export default function Patients() {
+  const patientListRequest = useGetPatientsQuery({ page: 0, size: 50 });
+  const { data, error, isLoading } = patientListRequest;
+  console.log(error);
+  const patientList = isLoading ? [] : data;
+  const fuseOptions = {
+    keys: ["firstName", "familyName", "nextAppointment"],
+    threshold: 0.3, // Adjust the threshold for more or less fuzzy matching
+  };
+  const fuse = new Fuse(patientList, fuseOptions);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredPatients, setFilteredPatients] = useState(patientList);
 
@@ -55,6 +60,13 @@ export default function Patients() {
       />
     </React.Fragment>
   ));
+
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen text-2xl">
+        Loading...
+      </div>
+    );
 
   return (
     <div className="flex h-screen overflow-hidden">
