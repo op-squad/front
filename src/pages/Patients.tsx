@@ -48,6 +48,8 @@ export default function Patients() {
     <React.Fragment key={index}>
       {index !== 0 && <hr />}
       <Patient
+        key={index}
+        id={index}
         selected={false}
         props={item}
       />

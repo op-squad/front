@@ -17,6 +17,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "./pages/Test";
 import doctorProfile from "./assets/profile/doctorProfile";
+import PatientProfile from "./components/app/patient_list/PatientProfile";
 import Patients from "@/pages/Patients";
 import ChatRoom from "@/pages/ChatRoom";
 
@@ -111,6 +112,10 @@ export default function App() {
           <Route
             path="patients"
             element={<Patients />}
+          ></Route>
+          <Route
+            path="patients/:patientId"
+            element={<PatientProfile />}
           ></Route>
           <Route
             path="models"

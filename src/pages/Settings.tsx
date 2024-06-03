@@ -4,7 +4,7 @@ import Sidebar from "@/components/app/Sidebar";
 export default function Settings({ context, actions }) {
   const { state, dispatch } = context;
   return (
-    <div className="flex overflow-hidden h-screen bg-blue-50">
+    <div className="flex overflow-hidden h-screen bg-blue-100">
       <Sidebar />
       <div className="flex justify-center w-full overflow-auto text-primary">
         <div className="flex flex-col p-16 w-max h-fit">
