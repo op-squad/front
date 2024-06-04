@@ -4,6 +4,7 @@ import { useGetStatVisitsByDateQuery } from "@/features/stat/statApiSlice";
 import Appointment from "./Appointment";
 import CalendarController from "./CalendarController";
 import Calendar from "./Calendar";
+import { Link } from "react-router-dom";
 
 export default function ScheduleCard() {
   const [date, setDate] = useState(moment());
@@ -21,8 +22,8 @@ export default function ScheduleCard() {
   return (
     <div className="flex flex-col gap-6 bg-blue-50 text-blue-950 rounded-xl p-8">
       <div className="flex justify-between">
-        <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950">
-          Schedule
+        <p className="font-extrabold text-xl 2xl:text-2xl text-blue-950 cursor-pointer hover:underline">
+          <Link to="/calendar">Schedule</Link>
         </p>
         <CalendarController
           date={date}

@@ -20,6 +20,7 @@ import doctorProfile from "./assets/profile/doctorProfile";
 import PatientProfile from "./components/app/patient_list/PatientProfile";
 import Patients from "@/pages/Patients";
 import ChatRoom from "@/pages/ChatRoom";
+import Calendar from "./pages/Calendar";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
@@ -123,7 +124,7 @@ export default function App() {
           ></Route>
           <Route
             path="calendar"
-            element={<NotFound />}
+            element={<Calendar />}
           ></Route>
           <Route
             path="settings"
