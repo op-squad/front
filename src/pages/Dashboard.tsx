@@ -67,7 +67,7 @@ export default function Dashboard() {
               />
               <StatCard
                 card={{
-                  cardName: "Model Reports",
+                  cardName: "Reports",
                   value: 27,
                 }}
                 style={{

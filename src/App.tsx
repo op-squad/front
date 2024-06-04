@@ -119,10 +119,6 @@ export default function App() {
             element={<PatientProfile />}
           ></Route>
           <Route
-            path="models"
-            element={<NotFound />}
-          ></Route>
-          <Route
             path="calendar"
             element={<Calendar />}
           ></Route>
