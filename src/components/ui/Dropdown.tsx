@@ -35,13 +35,19 @@ export const Dropdown = () => {
       {open && (
         <ul
           ref={menuRef}
-          className="flex flex-col px-4 py-4 absolute bg-blue-50 shadow-lg rounded-xl -left-10 top-10 z-10 transition"
+          className="flex flex-col px-4 py-4 absolute bg-blue-50 shadow-lg rounded-xl -left-20 top-10 z-10 transition"
         >
           <li
             onClick={() => setOpen(false)}
             className="cursor-poiner hover:bg-gray-300 p-2 px-4 rounded"
           >
-            <div className="cursor-pointer">Delete</div>
+            <div className="cursor-pointer text-nowrap">Set Finished</div>
+          </li>
+          <li
+            onClick={() => setOpen(false)}
+            className="cursor-poiner hover:bg-gray-300 p-2 px-4 rounded"
+          >
+            <div className="cursor-pointer text-nowrap">Delete</div>
           </li>
         </ul>
       )}
