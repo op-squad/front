@@ -9,7 +9,7 @@ import {
   // useGetStatVisitsByDateQuery,
 } from "@/features/stat/statApiSlice";
 import ClockLoader from "react-spinners/ClockLoader";
-import Chat from "./ChatRoom";
+// import Chat from "./ChatRoom";
 
 export default function Dashboard() {
   const { data: patientCount, isLoading: totalPatientLoading } =
@@ -85,9 +85,9 @@ export default function Dashboard() {
             <PatientListCard />
           </div>
           <div className="flex flex-col gap-8 h-max basis-[35%]">
-            <div className="bg-blue-50 max-h-96 rounded-xl ">
+            {/* <div className="bg-blue-50 max-h-96 rounded-xl ">
               <Chat />
-            </div>
+            </div> */}
             <ScheduleCard />
           </div>
         </div>

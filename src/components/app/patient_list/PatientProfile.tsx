@@ -78,12 +78,6 @@ export default function Patients() {
                 </div>
                 <div className="font-Lato text-lg">Ear Infection</div>
               </div>
-              {/* <div className="flex flex-col justify-center">
-                <div className="font-semibold text-sm text-gray-500">
-                Status
-                </div>
-                <div className="font-Lato text-lg">Active</div>
-              </div> */}
               <div className="flex flex-col justify-center">
                 <div className="font-semibold text-sm text-gray-500">
                   Registration Date
@@ -139,56 +133,50 @@ export default function Patients() {
           </div>
           <div className="flex flex-col gap-y-8 p-8 bg-blue-50 rounded-xl">
             <div className="font-extrabold text-2xl">Appointments</div>
-            <div className="grid grid-cols-[repeat(4,_1fr)_auto] gap-y-4 pr-8 overflow-y-auto h-64">
+            <div className="grid grid-cols-[repeat(3,_1fr)_auto] gap-y-4 pr-8 overflow-y-auto h-64">
               <div className="text-gray-500 font-bold">Date</div>
               <div className="text-gray-500 font-bold">Treatment Type</div>
               <div className="text-gray-500 font-bold">Booking Time</div>
-              <div className="text-gray-500 font-bold">Comments</div>
               <div className="text-gray-500 font-bold">Action</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
               <div className="font-medium">button</div>
               <div className="font-medium">12/06/2024</div>
               <div className="font-medium">Root Canal</div>
               <div className="font-medium">4:00pm</div>
-              <div className="font-medium">No Comments</div>
+              <div className="font-medium">button</div>
+              <div className="font-medium">12/06/2024</div>
+              <div className="font-medium">Root Canal</div>
+              <div className="font-medium">4:00pm</div>
               <div className="font-medium">button</div>
             </div>
           </div>

@@ -25,10 +25,29 @@ export const visitApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
-    createVisit: builder.mutation({
-      query: (body: VisitInfo) => {
+    getVisits: builder.query({
+      query: () => {
         return {
-          url: "/visit",
+          url: `/visits/no-pagination`,
+        };
+      },
+    }),
+    getVisitsByDate: builder.query({
+      query: (body: { date: string; page: number; size: number }) => {
+        return {
+          url: `/visits/day?date=${body.date}&page=${body.page}&size=${body.size}`,
+        };
+      },
+    }),
+    createVisit: builder.mutation({
+      query: (body: {
+        patientUsername: string;
+        doctorName: string;
+        diagnosis: string;
+        visitDate: string;
+      }) => {
+        return {
+          url: "/visit/doctor",
           method: "POST",
           body,
         };
@@ -52,15 +71,6 @@ export const visitApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
-    getVisits: builder.query({
-      query: (body: PaginationParams) => {
-        return {
-          url: "/visits",
-          body,
-        };
-      },
-    }),
-
     getVisitDone: builder.query({
       query: () => {
         return {
@@ -76,9 +86,9 @@ export const visitApiSlice = apiSlice.injectEndpoints({
       },
     }),
     getVisitClosest: builder.query({
-      query: () => {
+      query: (id: number) => {
         return {
-          url: "/visit/closest",
+          url: `/visit/closest?id=${id}`,
         };
       },
     }),
@@ -87,10 +97,12 @@ export const visitApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetVisitQuery,
+  useGetVisitsQuery,
+  useGetVisitsByDateQuery,
   useCreateVisitMutation,
   usePatchVisitMutation,
   useDeleteVisitMutation,
-  useGetVisitsQuery,
+  // useGetVisitsQuery,
   useGetVisitDoneQuery,
   useGetVisitCountQuery,
   useGetVisitClosestQuery,

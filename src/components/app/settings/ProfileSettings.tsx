@@ -42,7 +42,7 @@ export default function ProfileSettings({ context, actions }) {
               className="hidden"
               type="file"
               ref={ref}
-              onChange={(e) => console.log(uploadImage(e.target.files))}
+              onChange={(e) => uploadImage(e.target.files)}
             ></Input>
             <button
               onClick={() => chooseFile(ref)}
@@ -50,7 +50,12 @@ export default function ProfileSettings({ context, actions }) {
             >
               Change Picture
             </button>
-            <button className="border-solid border-2 border-red-600 text-red-600 px-8 py-2 rounded-md text-lg font-semibold">
+            <button
+              onClick={() => {
+                handleUpdateSettings("profilePicture", "");
+              }}
+              className="border-solid border-2 border-red-600 text-red-600 px-8 py-2 rounded-md text-lg font-semibold"
+            >
               Delete Picture
             </button>
           </div>
@@ -72,8 +77,8 @@ export default function ProfileSettings({ context, actions }) {
               id="family-name"
               value={
                 state.editMode
-                  ? state.unsavedChanges.familyName
-                  : state.profileSettings.familyName
+                  ? state.unsavedChanges.lastname
+                  : state.profileSettings.lastname
               }
               onChange={(e) => {
                 handleUpdateSettings("familyName", e.target.value);
@@ -93,8 +98,8 @@ export default function ProfileSettings({ context, actions }) {
               id="first-name"
               value={
                 state.editMode
-                  ? state.unsavedChanges.firstName
-                  : state.profileSettings.firstName
+                  ? state.unsavedChanges.firstname
+                  : state.profileSettings.firstname
               }
               onChange={(e) => {
                 handleUpdateSettings("firstName", e.target.value);
@@ -103,39 +108,24 @@ export default function ProfileSettings({ context, actions }) {
           </div>
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="role"
-              className="flex justify-between text-lg font-light"
-            >
-              Gender
-            </label>
-            <select
-              id="role"
-              onChange={(e) => {
-                handleUpdateSettings("gender", e.target.value);
-              }}
-              className="rounded-md h-10 border-solid border-2 px-4 w-max"
-            >
-              <option value="MALE">Male</option>
-              <option value="FEMALE">Female</option>
-            </select>
-          </div>
-          <div className="flex flex-col gap-2">
-            <label
               htmlFor="specialty"
               className="flex justify-between text-lg font-light"
             >
               Specialty
             </label>
-            <select
-              id="specialty"
+            <Input
+              className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+              type="text"
+              id="first-name"
+              value={
+                state.editMode
+                  ? state.unsavedChanges.specialty
+                  : state.profileSettings.specialty
+              }
               onChange={(e) => {
-                handleUpdateSettings("specialty", e.target.value);
+                handleUpdateSettings("firstName", e.target.value);
               }}
-              className="rounded-md h-10 border-solid border-2 px-4 w-max"
-            >
-              <option value="Surgery">Surgery</option>
-              <option value="Neurology">Neurology</option>
-            </select>
+            />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import moment from "moment";
-import { useGetStatVisitsByDateQuery } from "@/features/stat/statApiSlice";
+import { useGetVisitsByDateQuery } from "@/features/visit/visitApiSlice";
 import Appointment from "./Appointment";
 import CalendarController from "./CalendarController";
 import Calendar from "./Calendar";
@@ -8,13 +8,15 @@ import { Link } from "react-router-dom";
 
 export default function ScheduleCard() {
   const [date, setDate] = useState(moment());
-  const {
-    // data: visitsByDate,
-    isLoading,
-    isError,
-    refetch,
-  } = useGetStatVisitsByDateQuery({});
+  const responseVisits = useGetVisitsByDateQuery({
+    date: date.format("YYYY-MM-DD"),
+    page: 0,
+    size: 3,
+  });
 
+  console.log(responseVisits);
+
+  const { data: visitsByDate, isLoading, isError, refetch } = responseVisits;
   useEffect(() => {
     refetch(); // Ensure data is refetched when date changes
   }, [date, refetch]);
@@ -42,17 +44,16 @@ export default function ScheduleCard() {
         <p>Error fetching visits for {date.format("YYYY-MM-DD")}</p>
       ) : (
         <div className="flex flex-col gap-4">
-          {/* {visitsByDate &&
-            // visitsByDate[date.format("YYYY-MM-DD")].map((visit) => ( */}
-          {/* <React.Fragment key={visit.id}> */}
-          <Appointment
-            duration="10:00 AM - 11:00 AM"
-            title={"visit.doctorName" || "Dr. John Doe"}
-            link={""}
-          />
-          <hr />
-          {/* </React.Fragment> */}
-          {/* ))} */}
+          {visitsByDate &&
+            visitsByDate.map((visit) => (
+              <>
+                <Appointment
+                  title={visit.patientName}
+                  // link={""}
+                />
+                <hr />
+              </>
+            ))}
         </div>
       )}
     </div>

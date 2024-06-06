@@ -1,8 +1,49 @@
 import Sidebar from "@/components/app/Sidebar";
 import { Dropdown } from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
+import {
+  useCreateVisitMutation,
+  useGetVisitsQuery,
+} from "@/features/visit/visitApiSlice";
+import moment from "moment";
+import React from "react";
 import { useEffect, useRef, useState } from "react";
 
 export default function Calendar() {
+  const visits = useGetVisitsQuery();
+  const { data, isLoading, error } = visits;
+  const myData = data || [];
+
+  const [patientUsername, setPatientUsername] = useState("");
+  const [date, setDate] = useState("");
+
+  const [newVisit] = useCreateVisitMutation();
+  const handleNewAppointment = async (e) => {
+    const data = {
+      patientUsername: patientUsername,
+      doctorName: "asdf",
+      diagnosis: "asdf",
+      visitDate: date,
+    };
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:8080/visit/doctor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiRE9DVE9SIiwic3ViIjoiYW1pcmRvY3RvciIsImlhdCI6MTcxNzYzNzk2OCwiZXhwIjoxNzE3NjczOTY4fQ.5QbzDBAfJylKKXfqpdYdsbg_8aDkYHMjJcDlqgftYAo",
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(response);
+      setInterfaceOpen(false);
+      setPatientUsername("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const [interfaceOpen, setInterfaceOpen] = useState(false);
   const floatingWindowRef = useRef();
   useEffect(() => {
@@ -38,34 +79,30 @@ export default function Calendar() {
               New Appointment
             </button>
           </div>
-          <div className="grid grid-cols-[auto_repeat(5,_1fr)_auto] gap-x-8 w-full p-8 gap-y-8 bg-blue-50 rounded-xl">
+          <div className="grid grid-cols-[auto_repeat(4,_1fr)_auto] gap-x-8 w-full p-8 gap-y-8 bg-blue-50 rounded-xl">
             <div className="text-gray-600 font-semibold">#</div>
-            <div className="text-gray-600 font-semibold">Created</div>
             <div className="text-gray-600 font-semibold">Scheduled</div>
             <div className="text-gray-600 font-semibold">Patient</div>
             <div className="text-gray-600 font-semibold">Type</div>
             <div className="text-gray-600 font-semibold">Status</div>
             <div className="text-gray-600 font-semibold">Action</div>
 
-            <div className="font-medium">1</div>
-            <div className="font-medium font-Lato">10/04/2024</div>
-            <div className="font-medium font-Lato">15/04/2024</div>
-            <div className="font-medium">Hmed Bouallam</div>
-            <div className="font-medium">Root Canal</div>
-            <div className="font-medium">Pending</div>
-            <div className="font-medium">
-              <Dropdown />
-            </div>
-
-            <div className="font-medium">2</div>
-            <div className="font-medium font-Lato">10/04/2024</div>
-            <div className="font-medium font-Lato">15/04/2024</div>
-            <div className="font-medium">Hmed Bouallam</div>
-            <div className="font-medium">Root Canal</div>
-            <div className="font-medium">Done</div>
-            <div className="font-medium">
-              <Dropdown />
-            </div>
+            {myData.map((item, index) => (
+              <React.Fragment key={item.id}>
+                <div className="font-medium">{index + 1}</div>
+                <div className="font-medium font-Lato">
+                  {moment(item.visitDate).format("YYYY/MM/DD")}
+                </div>
+                <div className="font-medium">{item.patientName}</div>
+                <div className="font-medium">{item.diagnosis || "-"}</div>
+                <div className="font-medium">
+                  {item.isVisited ? "Done" : "Pending"}
+                </div>
+                <div className="font-medium">
+                  <Dropdown />
+                </div>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
@@ -79,30 +116,53 @@ export default function Calendar() {
             <div className="font-bold text-xl text-blue-950">
               New Appointment
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <input
-                type="text"
-                className="rounded-xl h-12"
-              />
-              <input
-                type="text"
-                className="rounded-xl h-12"
-              />
-              <input
-                type="text"
-                className="rounded-xl h-12"
-              />
-              <input
-                type="text"
-                className="rounded-xl h-12"
-              />
-            </div>
-            <button
-              onClick={() => setInterfaceOpen(false)}
-              className="p-4 py-2 bg-indigo-600 rounded-xl text-blue-50 self-end"
+            <form
+              onSubmit={handleNewAppointment}
+              className="flex flex-col gap-4"
             >
-              Save
-            </button>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="patient-username"
+                    className="flex justify-between text-lg font-light"
+                  >
+                    Patient Username
+                  </label>
+                  <Input
+                    className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+                    type="text"
+                    id="patient-username"
+                    value={patientUsername}
+                    onChange={(e) => {
+                      setPatientUsername(e.target.value);
+                    }}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="date"
+                    className="flex justify-between text-lg font-light"
+                  >
+                    Date
+                  </label>
+                  <Input
+                    className="rounded-lg h-10 border-solid border-2 px-4 w-max"
+                    type="date"
+                    id="date"
+                    value={date}
+                    onChange={(e) => {
+                      setDate(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="p-4 py-2 bg-indigo-600 rounded-xl text-blue-50 self-end"
+              >
+                Save
+              </button>
+            </form>
           </div>
         </div>
       )}

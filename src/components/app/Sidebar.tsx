@@ -5,8 +5,19 @@ import { IoSettingsSharp } from "react-icons/io5";
 import doctorProfile from "@/assets/profile/doctorProfile";
 import { logOut } from "@/features/auth/authSlice";
 import { useDispatch } from "react-redux";
+import { useGetProfilePictureQuery } from "@/features/crud/doctor/doctorApiSlice";
+import { useEffect, useState } from "react";
 
 export default function Sidebar() {
+  const requestProfilePicture = useGetProfilePictureQuery();
+  const [profilePictureUrl, setProfilePictureUrl] = useState("defaultProfilePicture");
+  useEffect(() => {
+    if (requestProfilePicture.data) {
+      setProfilePictureUrl(requestProfilePicture.data);
+      console.log(profilePictureUrl);
+    }
+  }, [requestProfilePicture.data]);
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -18,7 +29,7 @@ export default function Sidebar() {
     <div className="flex flex-col items-center bg-indigo-600 text-neutral-50 w-72 2xl:w-80 h-screen justify-between py-16">
       <div className="flex flex-col items-center">
         <img
-          src={doctorProfile.profilePicture}
+          src={profilePictureUrl}
           alt="doctor"
           className="w-2/5 aspect-square object-cover rounded-full"
         />

@@ -2,14 +2,14 @@
 // import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import React from "react";
-import { useGetPatientsQuery } from "@/features/crud/patient/patientApiSlice";
+import { useGetPatientsByPageQuery } from "@/features/crud/patient/patientApiSlice";
 
 // Function to convert a string to title case
 const toTitleCase = (str: string) => {
   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 };
 
-const Patient = ({ imgSrc, name, lastVisit, diagnosis }) => {
+const Patient = ({ id, imgSrc, name, lastVisit, diagnosis }) => {
   // Convert the name to title case
   const titleCaseName = toTitleCase(name);
 
@@ -23,7 +23,7 @@ const Patient = ({ imgSrc, name, lastVisit, diagnosis }) => {
           alt=""
         />
         <div className="text-xs">
-          <Link to="/patients/patient">
+          <Link to={`/patients/${id}`}>
             Full Name: <br />
             <span className="text-lg font-semibold cursor-pointer hover:underline">
               {titleCaseName}
@@ -53,7 +53,7 @@ export default function PatientListCard() {
     data: patients,
     error,
     isLoading,
-  } = useGetPatientsQuery({
+  } = useGetPatientsByPageQuery({
     page: 0,
     size: 3,
   });
@@ -74,6 +74,7 @@ export default function PatientListCard() {
         {patients.map((patient) => (
           <React.Fragment key={patient.id}>
             <Patient
+              id={patient.id}
               imgSrc="src/assets/profile/doctor.jpg" // Assuming each patient object has an imgSrc property
               name={patient.firstname + " " + patient.lastname}
               lastVisit="2 days ago"

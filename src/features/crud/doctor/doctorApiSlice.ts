@@ -22,6 +22,13 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+    getProfilePicture: builder.query({
+      query: () => ({
+        url: "/profile/picture",
+        responseHandler: (response) => response.blob(),
+      }),
+      transformResponse: (response) => URL.createObjectURL(response),
+    }),
     createDoctorProfile: builder.mutation({
       query: (body: doctorInfo) => {
         return {
@@ -39,11 +46,21 @@ export const doctorApiSlice = apiSlice.injectEndpoints({
         };
       },
     }),
+    addPatient: builder.mutation({
+      query: (username: string) => {
+        return {
+          url: `/doctor/patient?patientUsername=${username}`,
+          method: "POST",
+        };
+      },
+    }),
   }),
 });
 
 export const {
+  useGetDoctorProfileQuery,
+  useGetProfilePictureQuery,
   useCreateDoctorProfileMutation,
   useDeleteDoctorProfileMutation,
-  useGetDoctorProfileQuery,
+  useAddPatientMutation,
 } = doctorApiSlice;

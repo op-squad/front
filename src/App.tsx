@@ -11,32 +11,51 @@ import PasswordReset from "@/pages/PasswordReset";
 import RegisterDetails from "@/pages/RegisterDetails";
 import Register from "@/pages/Registration";
 import Settings from "@/pages/Settings";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import RequireUnAuth from "./components/RequireUnauth";
 import Test from "./pages/Test";
-import doctorProfile from "./assets/profile/doctorProfile";
 import PatientProfile from "./components/app/patient_list/PatientProfile";
 import Patients from "@/pages/Patients";
 import ChatRoom from "@/pages/ChatRoom";
 import Calendar from "./pages/Calendar";
+import {
+  useGetDoctorProfileQuery,
+  useGetProfilePictureQuery,
+} from "./features/crud/doctor/doctorApiSlice";
+// import doctorProfile from "./assets/profile/doctorProfile";
 
 const actionTypes = {
   ENTER_EDIT_MODE: "ENTER_EDIT_MODE",
   DISCARD_CHANGES: "DISCARD_SETTINGS",
   SAVE_SETTINGS: "SAVE_SETTINGS",
   UPDATE_SETTING: "UPDATE_SETTING",
+  SET_PROFILE: "SET_PROFILE",
+  SET_PROFILE_PICTURE: "SET_PROFILE_PICTURE",
 };
 
 const initialState = {
-  profileSettings: { ...doctorProfile },
+  profileSettings: {},
   editMode: false,
   unsavedChanges: {},
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case actionTypes.SET_PROFILE:
+      return {
+        ...state,
+        profileSettings: action.payload,
+      };
+    case actionTypes.SET_PROFILE_PICTURE:
+      return {
+        ...state,
+        profileSettings: {
+          ...state.profileSettings,
+          profilePicture: action.payload, // Assuming profilePicture is part of profileSettings
+        },
+      };
     case actionTypes.DISCARD_CHANGES:
       return {
         ...state,
@@ -68,8 +87,29 @@ const reducer = (state, action) => {
 };
 
 export default function App() {
+  const requestProfile = useGetDoctorProfileQuery();
+  const { data, isLoading, error } = requestProfile;
+  const requestProfilePicture = useGetProfilePictureQuery();
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const context = { state, dispatch };
+
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: "SET_PROFILE", payload: data });
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (requestProfilePicture.data) {
+      const profilePictureUrl = requestProfilePicture.data;
+      dispatch({
+        type: actionTypes.SET_PROFILE_PICTURE,
+        payload: profilePictureUrl,
+      });
+    }
+  }, [requestProfilePicture.data]);
+
   return (
     <Routes>
       <Route
@@ -151,11 +191,21 @@ export default function App() {
             ></Route>
             <Route
               path="contact"
-              element={<ContactSettings toggleEdit={state} />}
+              element={
+                <ContactSettings
+                  context={context}
+                  actions={actionTypes}
+                />
+              }
             ></Route>
             <Route
               path="password"
-              element={<PasswordSettings toggleEdit={state} />}
+              element={
+                <PasswordSettings
+                  context={context}
+                  actions={actionTypes}
+                />
+              }
             ></Route>
           </Route>
 

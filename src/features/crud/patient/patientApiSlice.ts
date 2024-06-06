@@ -22,10 +22,18 @@ export const patientApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
-    getPatients: builder.query({
+    getPatientsByPage: builder.query({
       query: (body: { page: number; size: number }) => {
         return {
           url: `/patients?page=${body.page}&size=${body.size}`,
+        };
+      },
+    }),
+
+    getPatients: builder.query({
+      query: () => {
+        return {
+          url: `/patients/no-pagination`,
         };
       },
     }),
@@ -67,6 +75,7 @@ export const patientApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useGetPatientByIDQuery,
+  useGetPatientsByPageQuery,
   useGetPatientsQuery,
   useCreatePatientMutation,
   useDelegatePatientMutation,
